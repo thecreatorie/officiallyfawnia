@@ -1,0 +1,33 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/advanced-polework-fire.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 11.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+  { label: 'DVD', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Advanced Polework & Fire (Watch Online) -->
+<!-- TODO: replace with real PayPal payment link for Advanced Polework & Fire (DVD) -->
+<VideoProduct
+  title="Advanced Polework & Fire"
+  pageTitle="Advanced Polework & Fire — Officially Fawnia"
+  description="Over 20 extremely advanced pole moves, strength demonstrations, contortion, and instruction on performing safely with fire — led by Fawnia Mondey."
+  slug="advanced-polework-fire"
+  image={cover}
+  imageAlt="Advanced Polework & Fire instructional DVD cover"
+  offers={offers}
+>
+      <p>
+        Have you mastered all the moves in Fawnia Mondey's Pole Work Volume 1? Have you yet to be
+        impressed by an exotic dancer's pole moves?
+      </p>
+      <p>
+        Exotic Dance superstar Fawnia Mondey leads the instruction on over 20 extremely advanced
+        pole moves, demonstrations of strength on the pole and floor, incorporating fire safely
+        into your show, instruction on how to perform with poise and fire, and impressive acts of
+        contortion. The DVD also features performances by Fawnia and the three demonstration
+        artists: Tammy Morris, Natasha Bird and Kelly Kayne.
+      </p>
+</VideoProduct>

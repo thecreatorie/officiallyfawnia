@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+---
+
+<PageLayout
+  title="Pole & Dance Gallery — Officially Fawnia"
+  description="Pole dancing and dance performance photos of Fawnia Mondey, pioneer of pole dancing instruction."
+  eyebrow="Gallery"
+  heading="Pole & Dance"
+>
+  <section class="container">
+    <GalleryGrid section="pole-dance" />
+    <p class="back"><a href="/gallery">← All galleries</a></p>
+  </section>
+</PageLayout>
+
+<style>
+  .back {
+    margin-top: var(--space-10);
+  }
+</style>

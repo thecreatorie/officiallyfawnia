@@ -1,0 +1,117 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <a href="/" class="logo">Officially Fawnia™</a>
+        <p class="tagline">
+          Fawnia... the pole dance instructor, fitness model and competitor, writer, actress and
+          100% Vegan.
+        </p>
+        <p class="tagline">
+          My current certifications include personal trainer, group fitness instructor and pole
+          dancing instructor, and I created the course for the Pole Dance Instructors Certification
+          (PDIC).
+        </p>
+      </div>
+      <nav aria-label="Footer">
+        <h2>Site</h2>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/resume">Résumé</a></li>
+          <li><a href="/fitness">Fitness</a></li>
+          <li><a href="/blog">News &amp; Articles</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/videos">Videos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Fawnia on the web">
+        <h2>Fawnia on the web</h2>
+        <ul>
+          <li><a href="https://www.polefitnessstudio.com" rel="noopener">Pole Fitness Studio</a></li>
+          <li><a href="https://lasvegaspolerentals.com" rel="noopener">Las Vegas Pole Rentals</a></li>
+          <li><a href="https://burlesquetogo.com" rel="noopener">Burlesque To Go</a></li>
+          <li><a href="https://www.facebook.com/fitnessfawnia" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/pub/fawnia-dietrich/16/278/740" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.imdb.com/name/nm0597744/" rel="noopener">IMDb</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="copyright">© {year} Officially Fawnia. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-12) var(--space-6);
+    margin-top: var(--space-section);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-semibold);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .tagline {
+    margin-top: var(--space-2);
+    color: var(--color-text-muted);
+    max-width: 40ch;
+  }
+
+  h2 {
+    font-family: var(--font-body);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-4) 0;
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  nav a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
+  .copyright {
+    margin-top: var(--space-12);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+</style>

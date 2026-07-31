@@ -1,0 +1,34 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/lap-dancing-entertaining-your-man.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 11.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+  { label: 'DVD', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Lap Dancing & Entertaining your Man (Watch Online) -->
+<!-- TODO: replace with real PayPal payment link for Lap Dancing & Entertaining your Man (DVD) -->
+<VideoProduct
+  title="Lap Dancing & Entertaining your Man"
+  pageTitle="Lap Dancing & Entertaining your Man — Officially Fawnia"
+  description="Fawnia Mondey, along with Athena, shows you how to lap dance to show your partner a romantic time — private shows, hands-free moves and more."
+  slug="lap-dancing-entertaining-your-man"
+  image={cover}
+  imageAlt="Lap Dancing & Entertaining your Man instructional DVD cover"
+  offers={offers}
+>
+      <p>
+        Do you want to spice up your love life? Fawnia Mondey, along with Athena, shows you how to
+        lap dance to show your partner a romantic time! You will learn how to have a private show,
+        how to make your performance hands-free, learn clothing removal moves, and plenty of ideas
+        for your home show. This DVD contains nudity.
+      </p>
+      <p>
+        The Art of Exotic Dancing is a DVD series designed to help you enhance your performance
+        with Visual Electric Energy! The Art of Exotic Dancing: Striptease Series is the ultimate
+        guide to exotic dancing and is the sexy, fun and exciting way to spice up your performance
+        (and your love life)!
+      </p>
+</VideoProduct>

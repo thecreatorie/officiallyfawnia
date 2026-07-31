@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../../layouts/PageLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      posts: posts
+        .filter((p) => p.data.tags.includes(tag))
+        .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()),
+    },
+  }));
+}
+
+const { tag, posts } = Astro.props;
+---
+
+<PageLayout
+  title={`${tag} — News & Articles — Officially Fawnia`}
+  description={`Articles tagged “${tag}” from Fawnia Mondey's News & Articles blog.`}
+  eyebrow="Tag"
+  heading={`#${tag}`}
+  intro={`${posts.length} article${posts.length === 1 ? '' : 's'} tagged “${tag}”.`}
+>
+  <section class="container">
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          <time datetime={post.data.publishDate.toISOString()}>
+            {post.data.publishDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="back"><a href="/blog">← All articles</a></p>
+  </section>
+</PageLayout>
+
+<style>
+  .post-list {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+    max-width: 72ch;
+  }
+  .post-list li {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-5);
+  }
+  .post-list a {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .post-list a:hover {
+    color: var(--color-accent);
+  }
+  .post-list time {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    margin-top: var(--space-1);
+  }
+  .post-list p {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+  }
+  .back {
+    margin-top: var(--space-10);
+  }
+</style>

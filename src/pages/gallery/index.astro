@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../layouts/PageLayout.astro';
+import galleries from '../../data/galleries.json';
+
+const sections = [
+  { slug: 'bikini', label: 'Bikini' },
+  { slug: 'competition', label: 'Competition' },
+  { slug: 'fitness', label: 'Fitness' },
+  { slug: 'pole-dance', label: 'Pole & Dance' },
+  { slug: 'fashion', label: 'Fashion' },
+  { slug: 'unique', label: 'Unique Variety' },
+  { slug: 'published', label: 'Published' },
+] as const;
+
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  '../../assets/gallery/**/*.{jpg,jpeg,png,JPG,JPEG}',
+  { eager: true }
+);
+
+const cards = sections.map(({ slug, label }) => {
+  const first = galleries[slug][0];
+  const key = Object.keys(modules).find((k) => k.endsWith(`/gallery/${slug}/${first.file}`));
+  return {
+    slug,
+    label,
+    count: galleries[slug].length,
+    image: key ? modules[key].default : undefined,
+    alt: first.alt,
+  };
+});
+---
+
+<PageLayout
+  title="Gallery — Officially Fawnia"
+  description="Photo galleries of Fawnia Mondey — bikini, competition, fitness, pole and dance, fashion, unique variety and published magazine features."
+  eyebrow="Gallery"
+  heading="Gallery"
+  intro="Enjoy my photo galleries — from competition stages and fitness shoots to pole, fashion and published magazine features."
+>
+  <section class="container">
+    <ul class="gallery-cards">
+      {cards.map((card, i) => (
+        <li>
+          <a href={`/gallery/${card.slug}`}>
+            {card.image && (
+              <Image
+                src={card.image}
+                alt={card.alt}
+                widths={[320, 480, 768]}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                loading={i < 2 ? 'eager' : 'lazy'}
+              />
+            )}
+            <span class="label">{card.label}</span>
+            <span class="count">{card.count} photos</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</PageLayout>
+
+<style>
+  .gallery-cards {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 640px) {
+    .gallery-cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1024px) {
+    .gallery-cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .gallery-cards a {
+    display: block;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .gallery-cards :global(img) {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+  .gallery-cards a:hover :global(img) {
+    transform: scale(1.02);
+  }
+  .label {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+  }
+  .count {
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+</style>

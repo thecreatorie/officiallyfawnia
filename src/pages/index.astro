@@ -1,0 +1,199 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Button from '../components/Button.astro';
+import Embed from '../components/Embed.astro';
+import heroImage from '../assets/pages/home-hero.jpg';
+import pfsImage from '../assets/pages/home-pole-fitness-studio.jpg';
+import pdlvImage from '../assets/pages/home-pole-dancing-las-vegas.jpg';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Fawnia Mondey',
+    alternateName: 'Fawnia Dietrich',
+    url: Astro.site?.href ?? 'https://www.officiallyfawnia.com',
+    description:
+      'Pole dance pioneer, instructor and judge; fitness model, personal trainer, author and actress. Producer of the world’s first instructional pole dancing video and creator of the Pole Dance Instructors Certification (PDIC).',
+    jobTitle: ['Pole Dance Instructor', 'Personal Trainer', 'Author', 'Actress'],
+    knowsAbout: ['Pole dancing', 'Fitness', 'Personal training', 'Nutrition'],
+    sameAs: [
+      'https://www.facebook.com/fitnessfawnia',
+      'https://www.linkedin.com/pub/fawnia-dietrich/16/278/740',
+      'https://www.imdb.com/name/nm0597744/',
+      'https://www.polefitnessstudio.com',
+      'https://lasvegaspolerentals.com',
+      'https://burlesquetogo.com',
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Officially Fawnia',
+    url: Astro.site?.href ?? 'https://www.officiallyfawnia.com',
+  },
+];
+---
+
+<BaseLayout
+  title="Officially Fawnia — Pole Dance Pioneer & Fitness Model"
+  description="My name is Fawnia. I am a pole dance instructor, fitness model, personal trainer, writer, producer and actress. Enjoy my galleries, articles and videos."
+  schema={schema}
+>
+  <Hero
+    eyebrow="Pole Dancing Pioneer, Instructor and Judge"
+    title="Welcome"
+    subtitle="My name is Fawnia. I am a pole dance instructor, fitness model, personal trainer, writer, producer and actress. Make yourself at home and enjoy my photo gallery, articles, and stop by my shop and check out my instructional pole dancing DVDs (the first of their kind), dance poles, and much more! If you are a model, check out the photographers and make-up artists that have been with me along the way!"
+    ctaLabel="Shop instructional videos"
+    ctaHref="/videos"
+    secondaryCtaLabel="About me"
+    secondaryCtaHref="/about"
+    image={heroImage}
+    imageAlt="Fawnia posing in a studio photoshoot"
+  />
+
+  <section class="container">
+    <SectionHeader
+      eyebrow="The official song"
+      title="“FAWNIA” — for the Queen of Pole"
+      description="The official song written and produced for the Queen of Pole, by Rezarect and Lil Mama. We hope you like it, and share it with your friends!"
+    />
+    <div class="song">
+      <Embed type="youtube" id="WPnxLS5wgPY" title="FAWNIA — the official song by Rezarect and Lil Mama" />
+    </div>
+  </section>
+
+  <section class="container">
+    <SectionHeader eyebrow="Studios" title="Learn with Fawnia in Las Vegas" />
+    <div class="studios">
+      <article class="studio">
+        <Image
+          src={pfsImage}
+          alt="Pole Fitness Studio class in Las Vegas"
+          widths={[480, 768, 1280]}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          loading="lazy"
+        />
+        <h3>Pole Fitness Studio</h3>
+        <p>
+          Learn from over 25 instructors specializing in pole dancing, lyra, aerial hammock, boot
+          camp, hip hop, hula hoop, yoga, stretching and more! Call us to set up your next birthday
+          or bachelorette party; yes we teach pole dancing parties 24/7. You can even rent a dance
+          pole and purchase instructional DVDs on Pole Dancing for Fitness! We also offer the Pole
+          Dance Instructor Certification (PDIC), and Lap Dance Instructor Certification (LDIC).
+        </p>
+        <Button href="https://www.polefitnessstudio.com" variant="secondary" external>Visit</Button>
+      </article>
+      <article class="studio">
+        <Image
+          src={pdlvImage}
+          alt="Pole Dancing Las Vegas studio"
+          widths={[480, 768, 1280]}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          loading="lazy"
+        />
+        <h3>Pole Dancing Las Vegas</h3>
+        <p>
+          Book your private pole dancing party with us. Try our unlimited monthly membership with
+          300 classes in Pole Dancing, Striptease, Yoga, Zumba, Booty Camp, Burlesque, Ballet and
+          more!
+        </p>
+        <Button href="http://www.poledancinglasvegas.net" variant="secondary" external>Visit</Button>
+      </article>
+    </div>
+  </section>
+
+  <section class="container">
+    <SectionHeader
+      eyebrow="News & Articles"
+      title="Latest from the blog"
+      description="Fitness, nutrition and lifestyle articles written by Fawnia."
+    />
+    <ul class="post-list">
+      {posts.slice(0, 5).map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          <time datetime={post.data.publishDate.toISOString()}>
+            {post.data.publishDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="all-posts"><a href="/blog">Read all articles →</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .song {
+    max-width: 800px;
+  }
+  .studios {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+  @media (min-width: 768px) {
+    .studios {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .studio :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+  .studio h3 {
+    margin: var(--space-4) 0 var(--space-2);
+  }
+  .studio p {
+    color: var(--color-text-muted);
+    margin: 0 0 var(--space-4);
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-6);
+  }
+  .post-list li {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-5);
+  }
+  .post-list a {
+    font-family: var(--font-display);
+    font-size: var(--fs-xl);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .post-list a:hover {
+    color: var(--color-accent);
+  }
+  .post-list time {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+    margin-top: var(--space-1);
+  }
+  .post-list p {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    max-width: 70ch;
+  }
+  .all-posts {
+    margin-top: var(--space-8);
+  }
+</style>

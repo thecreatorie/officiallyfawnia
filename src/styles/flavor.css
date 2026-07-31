@@ -1,0 +1,9 @@
+/* Editorial flavor — Officially Fawnia */
+h1, h2, h3 { letter-spacing: -0.01em; }
+.eyebrow { letter-spacing: 0.14em; text-transform: uppercase; font-size: var(--fs-sm); color: var(--color-accent); font-weight: var(--fw-semibold); }
+.section-rule { border: 0; border-top: 1px solid var(--color-text); margin-block: var(--space-8); }
+a:not(.btn) { text-decoration-color: var(--color-accent); text-underline-offset: 3px; }
+.btn--primary { background: var(--color-text); color: var(--color-bg); border-radius: var(--radius-sm); }
+.btn--primary:hover { background: var(--color-accent); color: #fff; }
+blockquote { border-left: 3px solid var(--color-accent); font-family: var(--font-display); font-size: var(--fs-xl); }
+.card { border: 1px solid var(--color-border); box-shadow: none; }

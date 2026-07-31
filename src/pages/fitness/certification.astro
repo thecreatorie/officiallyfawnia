@@ -1,0 +1,216 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import groupImage from '../../assets/pages/certification-group.jpg';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: 'Pole Dance Instructors Certification (PDIC)',
+  description:
+    'The Pole Dance Instructors Certification, written by Fawnia Mondey — four levels of choreography, 70 pole, dance and floor moves, and everything needed to teach a fun, safe pole fitness class.',
+  provider: { '@type': 'Person', name: 'Fawnia Mondey' },
+};
+---
+
+<PageLayout
+  title="Certification — Officially Fawnia"
+  description="Pole Fitness is one of the fastest growing forms of fitness today. Earn the Pole Dance Instructors Certification (PDIC), written by pioneer Fawnia Mondey."
+  eyebrow="Fitness"
+  heading="Certification"
+  intro="Pole Fitness is one of the fastest growing forms of fitness today. In fact there are thousands of Pole Dancing Schools all over the world, offering classes to women, men even children!"
+  schema={schema}
+>
+  <section class="container">
+    <div class="prose">
+      <p>
+        Do you enjoy working out? Have you been working as an exotic dancer and want to use your
+        career skills to your advantage? Or perhaps you have been taking pole dancing classes and
+        have been entertaining the idea of teaching one day.
+      </p>
+      <p>
+        Having a pole dance instructors certification under your belt is an important step in your
+        journey. I have written the Pole Dance Instructors Certification, which is certification
+        program designed to provide the instruction and guidance to encourage a fun fitness class in
+        a safe and supportive environment.
+      </p>
+    </div>
+
+    <figure class="photo">
+      <Image
+        src={groupImage}
+        alt="Group of newly certified pole dance instructors with Fawnia"
+        widths={[480, 768, 1280]}
+        sizes="(min-width: 1024px) 800px, 100vw"
+        loading="lazy"
+      />
+    </figure>
+
+    <SectionHeader eyebrow="Dates" title="2024 Pole Dance Instructors In-Person Certification dates" />
+    <div class="prose">
+      <ul>
+        <li>Pole Level 1 — Sunday October 20th, 3PM - 8PM</li>
+        <li>Pole Level 2 — Monday October 21st, 1PM - 6PM</li>
+        <li>Pole Level 3 — Tuesday October 22nd, 1PM - 5PM</li>
+        <li>Pole Level 4 — Wednesday October 23rd, 11AM - 4PM</li>
+      </ul>
+      <p class="footnote">
+        * Payment plans available, and discounts when taking more than one certification.<br />
+        * To pass each level and earn your certification you need successfully perform a minimum of
+        70% of the moves taught. Memorizing the routines is not required. Your take home manual will
+        serve as a guide for continued education.
+      </p>
+    </div>
+
+    <SectionHeader eyebrow="Programs" title="Basic Certification" description="Learn Pole Dancing, Levels 1, 2, 3 and 4" />
+    <div class="prose">
+      <ul>
+        <li>Four levels of Choreography - Complete Routines</li>
+        <li>70 Pole, Dance and Floor Moves, plus Transitions</li>
+        <li>
+          Receive 16-20 hours of dance instruction to learn the moves, and choreography as well as
+          appropriate methods for teaching
+        </li>
+        <li>Open discussion for Q &amp; A</li>
+        <li>A complete study and reference guide detailing all of the pole, dance and floor moves learned</li>
+        <li>Detailed information on how the muscles are getting a workout from each move</li>
+        <li>
+          Unlimited email contact after the completion of the course to answer any questions
+          regarding the choreography or teaching methods
+        </li>
+        <li>Basic documents for liability, and sign-in information</li>
+        <li>Membership to Pole Fitness Studio</li>
+        <li>Certificate of Completion</li>
+      </ul>
+      <p><strong>Cost: $2180 USD</strong> — Payment Plans Available</p>
+
+      <h3>Advanced Levels</h3>
+      <ul>
+        <li>Six levels of Choreography - Complete Routines</li>
+        <li>Learn 40 Intermediate and Advanced Pole, Dance and Floor Moves for a total: 100+ Moves</li>
+        <li>
+          Receive 28 hours of private instruction to learn the moves, and choreography as well as
+          appropriate methods for teaching
+        </li>
+        <li>A complete written profile of all the moves learned</li>
+        <li>Detailed information on how the muscles are getting a workout from each move</li>
+        <li>
+          Unlimited email contact after the completion of the course to answer any questions
+          regarding the choreography or teaching methods
+        </li>
+        <li>Basic documents for liability, prenatal, and sign-in information</li>
+        <li>Certificate of Completion</li>
+      </ul>
+      <p><strong>Level 5 &amp; 6 — $795 each level, in person</strong></p>
+
+      <h3>Chair Dance Certification</h3>
+      <p>
+        2024 Chair Dance Instructors Certification in Las Vegas, Nevada will be held: Sunday October
+        20th from 9:30AM - 2:30PM — <strong>$495</strong>
+      </p>
+
+      <h3>Booty Camp Certification</h3>
+      <p><strong>$495</strong></p>
+
+      <h3>Additional!</h3>
+      <p>
+        You may take an unlimited number of FREE pole dancing classes taught by Fawnia during your
+        visit and when you return, always. Enjoy a Special Final Night Out Dancing at Las Vegas's
+        Finest Night Clubs! <strong>Cost: FREE</strong>
+      </p>
+      <p>
+        <strong>Q:</strong> Can I do just Levels 1 and 2?<br />
+        <strong>A:</strong> Yes, you can complete just one or two levels if you like.
+      </p>
+      <p>
+        <strong>Required qualifications:</strong> Basic First Aid and CPR. A minimum of six months
+        of previous pole dancing experience, either recreational or professional. Having a dance or
+        fitness background is beneficial, but not required.
+      </p>
+      <ul>
+        <li>Level 1 only is $695</li>
+        <li>Level 1 &amp; 2: $1190</li>
+        <li>Level 1, 2, 3: $1685</li>
+        <li>Level 1 - 4: $2180</li>
+      </ul>
+      <p>
+        <strong>Now accepting applicants - CALL TODAY!</strong>
+        <a href="tel:+17022051440">702-205-1440</a>
+      </p>
+    </div>
+
+    <SectionHeader eyebrow="Why Fawnia" title="Why get certified by Fawnia?" />
+    <div class="prose">
+      <ul>
+        <li>
+          Fawnia is known globally as the world&rsquo;s first pole dancing instructor and has been
+          teaching since 1994
+        </li>
+        <li>
+          Fawnia was the first person to create an instructional dance video on how to pole dance in
+          1998
+        </li>
+        <li>
+          Previously to producing the instructional video &lsquo;Pole Work,&rsquo; Fawnia taught in clubs to
+          real exotic dancers and she too was also an exotic dancer, from 1994 - 96, and in 2008
+        </li>
+        <li>
+          Fawnia's name is highly respected in the pole dancing industry as she continues to teach
+          in Las Vegas, promote/judge pole dance competitions worldwide including World Pole Dance
+          Championship, National Aerial Pole Art Championships, World Pole Sports Championships,
+          International Pole Championships (IPC) and Vertical Pole Challenge reality TV show to name
+          a few
+        </li>
+        <li>Fawnia is a current certified personal trainer and group fitness instructor through AFAA</li>
+        <li>
+          Fawnia is a five time National level figure competitor, placing first in Canada in 2007,
+          and second in bikini at Fitness America in 2009
+        </li>
+        <li>
+          Fawnia is on the board of directors for the Pole Fitness Association (PFA), and on the
+          Executive Committee for International Pole Sports Federation (IPSF)
+        </li>
+        <li>The Pole Dance Community (PDC) awarded Fawnia with the PDC Pioneer Award in 2012</li>
+        <li>
+          In 2013 during the International Pole Championships Fawnia was awarded the IPDFA Industry
+          Leader of the Year 2014
+        </li>
+        <li>
+          Fawnia is the host of Pole Expo; a weekend of workshops, seminars, contests, showcases and
+          of course venders featuring the best pole dancing products and their creators
+        </li>
+        <li>Fawnia is the emcee for the Pole Championship Series at the Arnold Sports Festival 2014</li>
+        <li>Fawnia makes the connection between pole dancing and fitness</li>
+        <li>
+          Fawnia is a name you can trust in the pole fitness industry and your credentials will
+          reflect that
+        </li>
+      </ul>
+    </div>
+    <p><Button href="/contact" variant="primary">Contact Fawnia about becoming a certified Pole Fitness Instructor</Button></p>
+  </section>
+</PageLayout>
+
+<style>
+  .prose {
+    max-width: 72ch;
+  }
+  .prose h3 {
+    margin-top: var(--space-10);
+  }
+  .photo {
+    margin: var(--space-10) 0 0;
+    max-width: 800px;
+  }
+  .photo :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+  .footnote {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+  }
+</style>

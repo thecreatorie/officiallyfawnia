@@ -1,0 +1,48 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/dance-moves-floor-work.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 11.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+  { label: 'DVD', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Dance Moves & Floor Work (Watch Online) -->
+<!-- TODO: replace with real PayPal payment link for Dance Moves & Floor Work (DVD) -->
+<VideoProduct
+  title="Dance Moves & Floor Work"
+  pageTitle="Dance Moves & Floor Work — Officially Fawnia"
+  description="Step-by-step dance instruction from Fawnia Mondey — travelling, on-the-spot moves, floor work, spins and stretching for extreme flexibility."
+  slug="dance-moves-floor-work"
+  image={cover}
+  imageAlt="Dance Moves & Floor Work instructional DVD cover featuring Fawnia Mondey"
+  offers={offers}
+>
+      <p>
+        If you dream of becoming a professional dancer, want to tone and shape your body, or just
+        want to spice up your love life, The Art of Exotic Dancing: Striptease Series is the
+        ultimate tool for achieving your goals. If you are already a professional dancer and are
+        looking to take your performance to the next level, this program will help you to create
+        that knockout performance!
+      </p>
+      <p>
+        Created and hosted by Fawnia Mondey, Canada's award-winning exotic dancer, Dance Moves and
+        Floor Work provides step-by-step instruction and focuses on the following:
+      </p>
+      <ul>
+        <li>2 Performances by Fawnia!</li>
+        <li>Dance Instruction for: Travelling, On-The-Spot, Floor Work &amp; Spins</li>
+        <li>Key Points for: Winning a Contest &amp; Winning Over Your Audience</li>
+        <li>Stretching for Extreme Flexibility</li>
+      </ul>
+      <p>
+        This DVD provides exotic dancers and non-dancers with the ability to dance with confidence
+        and give everyone the dance they came for! You'll flow with the music that will help to
+        fuel your Inner Sexual Goddess, which they will learn to worship. The Art of Exotic
+        Dancing: Striptease Series is a video series designed to help you enhance your performance
+        with Visual Electric Energy! The Art of Exotic Dancing: Striptease Series is the ultimate
+        guide to exotic dancing, and it's the sexy, fun and exciting way to spice up your
+        performance (and your love life)!
+      </p>
+</VideoProduct>

@@ -1,0 +1,130 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+const tags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'News & Articles — Officially Fawnia',
+  url: new URL('/blog', Astro.site ?? 'https://www.officiallyfawnia.com').toString(),
+  author: { '@type': 'Person', name: 'Fawnia Mondey' },
+};
+---
+
+<PageLayout
+  title="News & Articles — Officially Fawnia"
+  description="News and articles by Fawnia Mondey — training, nutrition, stress relief, vegan living and more from the pioneer of pole dancing instruction."
+  eyebrow="Blog"
+  heading="News & Articles"
+  intro="Fitness, nutrition and lifestyle articles written by Fawnia."
+  schema={schema}
+>
+  <section class="container">
+    <nav class="tag-nav" aria-label="Browse by tag">
+      <ul>
+        {tags.map((tag) => (
+          <li><a href={`/blog/tag/${tag}`}>#{tag}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <article>
+            <p class="tags">{post.data.tags.join(' · ')}</p>
+            <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+            <time datetime={post.data.publishDate.toISOString()}>
+              {post.data.publishDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+            <p>{post.data.description}</p>
+            <p><a class="more" href={`/blog/${post.slug}`}>Read more →</a></p>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </section>
+</PageLayout>
+
+<style>
+  .tag-nav {
+    margin-top: var(--space-10);
+  }
+  .tag-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tag-nav a {
+    display: inline-block;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--fs-sm);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .tag-nav a:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+  .post-list {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-10);
+    max-width: 72ch;
+  }
+  .post-list li {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-8);
+  }
+  .tags {
+    margin: 0 0 var(--space-2);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+  h2 {
+    margin: 0;
+    font-size: var(--fs-2xl);
+  }
+  h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  h2 a:hover {
+    color: var(--color-accent);
+  }
+  time {
+    display: block;
+    margin-top: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+  article p {
+    margin: var(--space-3) 0 0;
+    color: var(--color-text-muted);
+  }
+  .more {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: var(--fw-medium);
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/fawnia-live-on-stage.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Fawnia Live on Stage! (Watch Online) -->
+<VideoProduct
+  title="Fawnia Live on Stage!"
+  pageTitle="Fawnia Live on Stage! — Officially Fawnia"
+  description="Over 60 minutes of footage — Fawnia's bodybuilding competition, Miss Venus Swimwear Pageant, award-winning Miss Nude BC performance and solo shows."
+  slug="fawnia-live-on-stage"
+  image={cover}
+  imageAlt="Fawnia Live on Stage! video cover featuring Fawnia performing"
+  offers={offers}
+>
+      <p>
+        Be entertained with over 60 minutes of footage Fawnia has created and gathered just for
+        you!
+      </p>
+      <p>
+        Includes Fawnia's bodybuilding competition, Miss Venus Swimwear Pageant, award-winning
+        Mis. Nude BC performance and special solo shows by Fawnia &amp; Anthea at 'The Penthouse'
+        Showroom in Vancouver, B. C. Canada! (available online only)
+      </p>
+</VideoProduct>

@@ -1,0 +1,173 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../layouts/PageLayout.astro';
+
+import poleWork from '../../assets/videos/pole-work.jpg';
+import danceMoves from '../../assets/videos/dance-moves-floor-work.jpg';
+import lapDancing from '../../assets/videos/lap-dancing-entertaining-your-man.jpg';
+import makingFitnessFun from '../../assets/videos/making-fitness-fun.jpg';
+import maleExotic from '../../assets/videos/male-exotic-dancing.jpg';
+import advancedPolework from '../../assets/videos/advanced-polework-fire.jpg';
+import liveOnStage from '../../assets/videos/fawnia-live-on-stage.jpg';
+
+const products = [
+  {
+    slug: 'pole-work',
+    title: 'Pole Work',
+    price: 'From $11.95',
+    image: poleWork,
+    alt: 'Pole Work instructional DVD cover featuring Fawnia Mondey',
+    blurb:
+      'If you dream of becoming a professional dancer, want to tone and shape your body, or just want to spice up your love life, The Art of Exotic Dancing: Striptease Series is the ultimate tool for achieving your goals.',
+  },
+  {
+    slug: 'dance-moves-floor-work',
+    title: 'Dance Moves & Floor Work',
+    price: 'From $11.95',
+    image: danceMoves,
+    alt: 'Dance Moves & Floor Work instructional DVD cover',
+    blurb:
+      'Step-by-step dance instruction — travelling, on-the-spot moves, floor work, spins and stretching for extreme flexibility.',
+  },
+  {
+    slug: 'lap-dancing-entertaining-your-man',
+    title: 'Lap Dancing & Entertaining your Man',
+    price: 'From $11.95',
+    image: lapDancing,
+    alt: 'Lap Dancing & Entertaining your Man instructional DVD cover',
+    blurb:
+      'Do you want to spice up your love life? Fawnia Mondey, along with Athena, shows you how to lap dance to show your partner a romantic time! This DVD contains nudity.',
+  },
+  {
+    slug: 'making-fitness-fun',
+    title: 'Making Fitness Fun',
+    price: 'From $11.95',
+    image: makingFitnessFun,
+    alt: 'Making Fitness Fun instructional DVD cover featuring Fawnia Mondey',
+    blurb:
+      'This weight training video / DVD was shot two weeks before her figure show at the BCs, in Canada.',
+  },
+  {
+    slug: 'male-exotic-dancing',
+    title: 'Male Exotic Dancing',
+    price: 'From $11.95',
+    image: maleExotic,
+    alt: 'Male Exotic Dancing instructional DVD cover',
+    blurb:
+      'Join Jax Steele as he demonstrates a striptease for his partner at home, and get an inside look at his live club performance where women go crazy.',
+  },
+  {
+    slug: 'advanced-polework-fire',
+    title: 'Advanced Polework & Fire',
+    price: 'From $11.95',
+    image: advancedPolework,
+    alt: 'Advanced Polework & Fire instructional DVD cover',
+    blurb:
+      "Over 20 extremely advanced pole moves, demonstrations of strength, contortion, and instruction on performing safely with fire.",
+  },
+  {
+    slug: 'fawnia-live-on-stage',
+    title: 'Fawnia Live on Stage!',
+    price: '$19.95',
+    image: liveOnStage,
+    alt: 'Fawnia Live on Stage! video cover featuring Fawnia performing',
+    blurb:
+      'Be entertained with over 60 minutes of footage Fawnia has created and gathered just for you! (available online only)',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Shop — Officially Fawnia',
+  description:
+    'Instructional pole dancing, exotic dance and fitness videos by Fawnia Mondey — the first of their kind — available to watch online or on DVD.',
+};
+---
+
+<PageLayout
+  title="Shop Instructional Videos — Officially Fawnia"
+  description="Instructional pole dancing, dance and fitness videos by Fawnia Mondey — the first of their kind. Watch online or order the DVD."
+  eyebrow="Shop"
+  heading="Instructional Videos & DVDs"
+  intro="Fawnia produced the world's first instructional pole dancing video in 1998 and went on to produce six more titles. Each is available to watch online, and most are also available on DVD."
+  schema={schema}
+>
+  <section class="container">
+    <ul class="products">
+      {products.map((product, i) => (
+        <li>
+          <a href={`/videos/${product.slug}`} class="cover">
+            <Image
+              src={product.image}
+              alt={product.alt}
+              widths={[320, 480, 768]}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              loading={i < 3 ? 'eager' : 'lazy'}
+            />
+          </a>
+          <h2><a href={`/videos/${product.slug}`}>{product.title}</a></h2>
+          <p class="price">{product.price}</p>
+          <p class="blurb">{product.blurb}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</PageLayout>
+
+<style>
+  .products {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10) var(--space-6);
+  }
+  @media (min-width: 640px) {
+    .products {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 1024px) {
+    .products {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .cover {
+    display: block;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+  .cover :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+  .cover:hover :global(img) {
+    transform: scale(1.02);
+  }
+  h2 {
+    margin: var(--space-4) 0 0;
+    font-size: var(--fs-xl);
+  }
+  h2 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  h2 a:hover {
+    color: var(--color-accent);
+  }
+  .price {
+    margin: var(--space-1) 0 0;
+    color: var(--color-accent);
+    font-weight: var(--fw-semibold);
+  }
+  .blurb {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+</style>

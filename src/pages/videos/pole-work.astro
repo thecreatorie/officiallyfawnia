@@ -1,0 +1,50 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/pole-work.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 11.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+  { label: 'DVD', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Pole Work (Watch Online) -->
+<!-- TODO: replace with real PayPal payment link for Pole Work (DVD) -->
+<VideoProduct
+  title="Pole Work"
+  pageTitle="Pole Work — Officially Fawnia"
+  description="The world's first instructional pole dancing video. Step-by-step instruction on over 30 pole moves for beginner, intermediate and advanced dancers."
+  slug="pole-work"
+  image={cover}
+  imageAlt="Pole Work instructional DVD cover featuring Fawnia Mondey"
+  offers={offers}
+>
+      <p>
+        If you dream of becoming a professional dancer, want to tone and shape your body, or just
+        want to spice up your love life, The Art of Exotic Dancing: Striptease Series is the
+        ultimate tool for achieving your goals.
+      </p>
+      <p>
+        Pole Work has three sections: Beginner, Intermediate and Advanced, providing step-by-step
+        instruction for all levels. If you are already a professional dancer and are looking to take
+        your performance to the next level, this program will help you to create that knockout
+        performance!
+      </p>
+      <p>
+        Created and hosted by Fawnia Mondey, Canada's award-winning exotic dancer, Pole Work
+        provides dance instruction and focuses on the following:
+      </p>
+      <ul>
+        <li>Safe Warm-up and Stretching Techniques</li>
+        <li>Step By Step instruction on how to gracefully perform over 30 pole moves</li>
+        <li>Correct hand, body and leg positions</li>
+        <li>Follow-up moves for your pole techniques</li>
+        <li>Hints for making pole work easier</li>
+      </ul>
+      <p>
+        The Art of Exotic Dancing is a DVD series designed to help you enhance your performance
+        with Visual Electric Energy! The Art of Exotic Dancing: Striptease Series is the ultimate
+        guide to exotic dancing and is the sexy, fun and exciting way to spice up your performance
+        (and your love life)! Contains No Nudity.
+      </p>
+</VideoProduct>

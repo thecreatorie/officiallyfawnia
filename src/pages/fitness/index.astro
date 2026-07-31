@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Card from '../../components/Card.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+---
+
+<PageLayout
+  title="Fitness — Officially Fawnia"
+  description="Fitness with Fawnia Mondey — personal training in Las Vegas, the Pole Dance Instructors Certification, fitness photos and training articles."
+  eyebrow="Fitness"
+  heading="Fitness"
+  intro="Fitness is a lifestyle for me. Explore personal training with Fawnia, the Pole Dance Instructors Certification, my fitness photo gallery and my articles on training and nutrition."
+>
+  <section class="container">
+    <SectionHeader eyebrow="Work with Fawnia" title="Training & Certification" />
+    <div class="grid">
+      <Card
+        eyebrow="One on one"
+        title="Personal Trainer"
+        description="Personal training with Fawnia in Las Vegas — assessment, training program design and consultation with the Fit Body package."
+        href="/fitness/personal-trainer"
+      />
+      <Card
+        eyebrow="Teach pole"
+        title="Certification"
+        description="The Pole Dance Instructors Certification (PDIC) — four levels of choreography, 70+ moves and everything you need to teach pole dancing safely."
+        href="/fitness/certification"
+      />
+      <Card
+        eyebrow="Photos"
+        title="Fitness Gallery"
+        description="Fitness photoshoots and training photos from throughout Fawnia's modeling and competition career."
+        href="/gallery/fitness"
+      />
+    </div>
+  </section>
+
+  <section class="container">
+    <SectionHeader
+      eyebrow="Articles"
+      title="Fitness articles by Fawnia"
+      description="Training, nutrition and lifestyle articles from the News & Articles blog."
+    />
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+          <time datetime={post.data.publishDate.toISOString()}>
+            {post.data.publishDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </li>
+      ))}
+    </ul>
+  </section>
+</PageLayout>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .post-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .post-list li {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .post-list a {
+    font-weight: var(--fw-medium);
+    color: var(--color-text);
+    text-decoration: none;
+  }
+  .post-list a:hover {
+    color: var(--color-accent);
+  }
+  .post-list time {
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+</style>

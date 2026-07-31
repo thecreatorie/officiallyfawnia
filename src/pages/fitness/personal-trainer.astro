@@ -1,0 +1,186 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../../layouts/PageLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import Button from '../../components/Button.astro';
+import beforeImage from '../../assets/pages/trainer-before.jpeg';
+import afterImage from '../../assets/pages/trainer-after.jpeg';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Personal training',
+  provider: { '@type': 'Person', name: 'Fawnia Mondey' },
+  areaServed: 'Las Vegas, NV',
+  description:
+    'Personal training with Fawnia Mondey in Las Vegas — general fitness, competition prep, nutrition and supplementation. $130/hour, or online training with the Fit Body package at $950/month.',
+};
+---
+
+<PageLayout
+  title="Personal Trainer & Pole Instructor — Officially Fawnia"
+  description="Personal training with Fawnia Mondey in Las Vegas — general fitness, competition prep, nutrition and the Fit Body assessment package."
+  eyebrow="Fitness"
+  heading="Personal Trainer & Pole Dance Instructor"
+  schema={schema}
+>
+  <section class="container">
+    <div class="prose">
+      <p>
+        When I started dancing in October 1994, at the age of 19 I weighed 142lbs. Standing 5'4" my
+        stats were considered 'average' (and healthy). Sure I may have been healthy and my weight
+        was average by societies standards, but would I have still been healthy and average in
+        another 10 years, and did I want to be "average?" From exotic dancing alone, I lost 35
+        pounds and in Jan 1995 I was 108 pounds. This is when I made a choice to join a gym and
+        shape my body.
+      </p>
+      <p>
+        More than 20 years have now past and I have competed in over 24 dance, figure, fitness and
+        bikini competitions. Having placed 1st at the Canadian Figure &amp; Fitness Nationals, I know
+        how to build muscle, lose weight and tone my body. Today, I would like to help you get
+        started on your transformation.
+      </p>
+    </div>
+
+    <div class="before-after">
+      <figure>
+        <Image
+          src={beforeImage}
+          alt="Fawnia before her transformation, 1994"
+          widths={[480, 768]}
+          sizes="(min-width: 768px) 40vw, 100vw"
+          loading="lazy"
+        />
+        <figcaption>BEFORE - 1994</figcaption>
+      </figure>
+      <figure>
+        <Image
+          src={afterImage}
+          alt="Fawnia after years of training, 2015"
+          widths={[480, 768]}
+          sizes="(min-width: 768px) 40vw, 100vw"
+          loading="lazy"
+        />
+        <figcaption>AFTER - 2015</figcaption>
+      </figure>
+    </div>
+
+    <SectionHeader eyebrow="Details" title="Personal Training with Fawnia" />
+    <dl class="facts">
+      <div><dt>Location</dt><dd>Las Vegas, NV. USA</dd></div>
+      <div><dt>Rates</dt><dd>$130/hour or online training: $950/month.*</dd></div>
+      <div><dt>Specialty</dt><dd>General Fitness, Competition, Nutrition &amp; Supplementation</dd></div>
+      <div><dt>Gym Affiliation</dt><dd>Pole Fitness Studio</dd></div>
+    </dl>
+    <p class="footnote">* Includes eight pole dancing privates a month</p>
+
+    <div class="prose">
+      <h3>Methodology</h3>
+      <p>
+        Fitness is a lifestyle for me and when working with clients I educate and encourage them to
+        bring some form of fitness into their life every day. From weight training, to walking with
+        a friend in the fresh outdoors, everyone does have the equipment they need to be fit and
+        healthy. This equipment is your mind. Together, with our mental strength we'll set goals and
+        work at achieving them one step at a time. Staying fit is about more then your appearance,
+        it's also about cardio health, and I will work with you to improve both so you get the most
+        out of life.
+      </p>
+      <h3>Outlook of Fitness Industry</h3>
+      <p>
+        Being consistent with your eating plan, workouts and getting adequate rest is when you will
+        reach your long term goals. Many people are committed to watching 3 hours of television a
+        day, or making a stop for fast food, and wonder why they have no energy and can't loose
+        weight. Those who want to improve their health and appearance, are committed to a lifestyle
+        that will result in having a greater appreciation for life.
+      </p>
+      <h3>Training Philosophy</h3>
+      <p>
+        I start by getting to know the clients health history, and what their goals are. We set
+        attainable mini goals which will keep the client motivated. Nutrition accounts for about 80%
+        of how we look and feel so I evaluate the clients current diet, and include what I can from
+        their food choices into an eating plan they will enjoy. Weight training and cardio are the
+        two other major elements for overall health, and I include both into my programs.
+      </p>
+      <h3>Fit Body - $950 / Assessment, Training Program Design and Consultation</h3>
+      <p>
+        <strong>Assessment:</strong> Send me photos of you to evaluate your physique. Photos should
+        be of you in a bikini / thong. Shoot full body front, side and from the back. Include a face
+        shot. Send me a record of what you have been eating for three days. I would like to know
+        what, when and how much you are eating and drinking.
+      </p>
+      <p>
+        <strong>Training Program Design:</strong> Fill out the Health History &amp; Goals Form and I
+        will have a better understanding of where you are currently at physically, and where you
+        would like to see yourself. Email me to get started.
+      </p>
+      <p>
+        <strong>Consultation:</strong> Based on your current condition and goals, I will help you
+        tune up your current eating plan, give you a workout program, and provide encouragement
+        along the way as you get the Fit Body you want. Programs are emailed. Receive eight training
+        sessions, or eight pole dancing private lessons. Month to month available, no contracts.
+      </p>
+      <blockquote>
+        I know that you can reach your goals, and I will do what I can to provide the support you
+        may need as you make this courageous step. Contact me to get information on beginning your
+        fitness program with the Fit Body Package, making your dreams a reality!
+      </blockquote>
+    </div>
+    <p><Button href="/contact" variant="primary">Contact Fawnia to get started</Button></p>
+  </section>
+</PageLayout>
+
+<style>
+  .prose {
+    max-width: 72ch;
+  }
+  .prose h3 {
+    margin-top: var(--space-10);
+  }
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-block: var(--space-10);
+    max-width: 800px;
+  }
+  .before-after figure {
+    margin: 0;
+  }
+  .before-after :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+  .before-after figcaption {
+    margin-top: var(--space-2);
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+  .facts {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+    max-width: 60ch;
+  }
+  .facts div {
+    display: grid;
+    grid-template-columns: minmax(120px, 160px) 1fr;
+    gap: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-3);
+  }
+  .facts dt {
+    font-weight: var(--fw-semibold);
+  }
+  .facts dd {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+  .footnote {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-3);
+  }
+</style>

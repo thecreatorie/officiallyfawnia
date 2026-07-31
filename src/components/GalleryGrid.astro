@@ -1,0 +1,64 @@
+---
+import { Image } from 'astro:assets';
+import galleries from '../data/galleries.json';
+
+export interface Props {
+  section: keyof typeof galleries;
+}
+
+const { section } = Astro.props;
+
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/gallery/**/*.{jpg,jpeg,png,JPG,JPEG}',
+  { eager: true }
+);
+
+const items = (galleries[section] ?? []).map((item) => {
+  const key = Object.keys(modules).find((k) => k.endsWith(`/gallery/${section}/${item.file}`));
+  return key ? { image: modules[key].default, alt: item.alt } : null;
+}).filter((x): x is { image: ImageMetadata; alt: string } => x !== null);
+---
+
+<ul class="gallery-grid">
+  {items.map(({ image, alt }, i) => (
+    <li>
+      <Image
+        src={image}
+        alt={alt}
+        widths={[320, 480, 768]}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        loading={i === 0 ? 'eager' : 'lazy'}
+      />
+    </li>
+  ))}
+</ul>
+
+<style>
+  .gallery-grid {
+    list-style: none;
+    margin: var(--space-10) 0 0;
+    padding: 0;
+    columns: 1;
+    column-gap: var(--space-4);
+  }
+  @media (min-width: 640px) {
+    .gallery-grid {
+      columns: 2;
+    }
+  }
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      columns: 3;
+    }
+  }
+  .gallery-grid li {
+    break-inside: avoid;
+    margin-bottom: var(--space-4);
+  }
+  .gallery-grid :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+</style>

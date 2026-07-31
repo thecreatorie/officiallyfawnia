@@ -1,0 +1,27 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/male-exotic-dancing.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 11.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+  { label: 'DVD', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Male Exotic Dancing (Watch Online) -->
+<!-- TODO: replace with real PayPal payment link for Male Exotic Dancing (DVD) -->
+<VideoProduct
+  title="Male Exotic Dancing"
+  pageTitle="Male Exotic Dancing — Officially Fawnia"
+  description="Join Jax Steele as he demonstrates a striptease at home and live in the club, and learn the steps to becoming a successful male stripper."
+  slug="male-exotic-dancing"
+  image={cover}
+  imageAlt="Male Exotic Dancing instructional DVD cover"
+  offers={offers}
+>
+      <p>
+        Join Jax Steele as he demonstrates a striptease for his partner at home. Also get an inside
+        look at his live club performance where women go crazy. Sit in on my interview with Jax and
+        learn the steps to becoming a successful male stripper.
+      </p>
+</VideoProduct>

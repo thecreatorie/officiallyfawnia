@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import PageLayout from '../layouts/PageLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import contactImage from '../assets/pages/contact-fawnia.jpg';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact — Officially Fawnia',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Fawnia Mondey',
+    telephone: '+1-702-878-7653',
+    sameAs: [
+      'https://www.facebook.com/fitnessfawnia',
+      'https://www.linkedin.com/pub/fawnia-dietrich/16/278/740',
+      'https://www.imdb.com/name/nm0597744/',
+    ],
+  },
+};
+---
+
+<PageLayout
+  title="Contact — Officially Fawnia"
+  description="Get in touch with Fawnia for bookings, personal training, certifications and appearances. Call 702-878-7653 or connect on Facebook, LinkedIn and IMDb."
+  eyebrow="Get in Touch"
+  heading="Contact"
+  intro="Contact me for booking — appearances, personal training, certifications, workshops and press."
+  schema={schema}
+>
+  <section class="container">
+    <div class="split">
+      <div>
+        <SectionHeader eyebrow="Booking" title="Contact me for booking" />
+        <p class="phone">
+          Call <a href="tel:+17028787653">702-878-7653</a>
+        </p>
+        <h3>Connect</h3>
+        <ul class="links">
+          <li><a href="https://www.facebook.com/fitnessfawnia" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/pub/fawnia-dietrich/16/278/740" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.imdb.com/name/nm0597744/" rel="noopener">IMDb</a></li>
+        </ul>
+        <h3>Fawnia on the web</h3>
+        <ul class="links">
+          <li><a href="https://www.polefitnessstudio.com" rel="noopener">Pole Fitness Studio</a></li>
+          <li><a href="https://lasvegaspolerentals.com" rel="noopener">Las Vegas Pole Rentals</a></li>
+          <li><a href="https://burlesquetogo.com" rel="noopener">Burlesque To Go</a></li>
+        </ul>
+      </div>
+      <figure>
+        <Image
+          src={contactImage}
+          alt="Fawnia Mondey"
+          widths={[480, 768, 1024]}
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .split {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+  .split figure {
+    margin: 0;
+  }
+  .split :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+  }
+  .phone {
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+  }
+  .phone a {
+    color: var(--color-text);
+    text-decoration-color: var(--color-accent);
+  }
+  h3 {
+    margin-top: var(--space-8);
+  }
+  .links {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+</style>

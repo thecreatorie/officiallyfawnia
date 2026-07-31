@@ -1,0 +1,26 @@
+---
+import VideoProduct from '../../components/VideoProduct.astro';
+import cover from '../../assets/videos/making-fitness-fun.jpg';
+
+const offers = [
+  { label: 'Watch Online', price: 11.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+  { label: 'DVD', price: 19.95, href: 'https://www.paypal.com/ncp/payment/REPLACE_ME' },
+];
+---
+
+<!-- TODO: replace with real PayPal payment link for Making Fitness Fun (Watch Online) -->
+<!-- TODO: replace with real PayPal payment link for Making Fitness Fun (DVD) -->
+<VideoProduct
+  title="Making Fitness Fun"
+  pageTitle="Making Fitness Fun — Officially Fawnia"
+  description="Fawnia's weight training video, shot two weeks before her figure show at the BCs in Canada. Formerly titled Fitness for the Dancer."
+  slug="making-fitness-fun"
+  image={cover}
+  imageAlt="Making Fitness Fun instructional DVD cover featuring Fawnia Mondey"
+  offers={offers}
+>
+      <p>
+        This weight training video / DVD was shot two weeks before her figure show at the BCs, in
+        Canada.
+      </p>
+</VideoProduct>

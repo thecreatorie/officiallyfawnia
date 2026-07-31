@@ -1,0 +1,22 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import GalleryGrid from '../../components/GalleryGrid.astro';
+---
+
+<PageLayout
+  title="Published Gallery — Officially Fawnia"
+  description="Published magazine covers, calendar pages and press features of Fawnia Mondey."
+  eyebrow="Gallery"
+  heading="Published"
+>
+  <section class="container">
+    <GalleryGrid section="published" />
+    <p class="back"><a href="/gallery">← All galleries</a></p>
+  </section>
+</PageLayout>
+
+<style>
+  .back {
+    margin-top: var(--space-10);
+  }
+</style>

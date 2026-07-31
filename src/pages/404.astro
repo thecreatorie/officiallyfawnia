@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Not found — Officially Fawnia"
+  description="The page you were looking for doesn't exist."
+  noindex
+>
+  <section class="container not-found">
+    <p class="eyebrow">404</p>
+    <h1>Couldn't find that page</h1>
+    <p>It may have moved during the site refresh, or the link might be broken. Try one of these:</p>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About Me</a></li>
+      <li><a href="/blog">News &amp; Articles</a></li>
+      <li><a href="/gallery">Gallery</a></li>
+      <li><a href="/videos">Videos</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--space-section);
+    max-width: 60ch;
+  }
+  .eyebrow {
+    font-size: var(--fs-sm);
+    font-weight: var(--fw-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+  }
+  ul { padding-left: var(--space-5); }
+</style>

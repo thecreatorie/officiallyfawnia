@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from './Button.astro';
+
+export interface Offer {
+  label: string;
+  price: number;
+  href: string;
+}
+
+export interface Props {
+  title: string;
+  pageTitle: string;
+  description: string;
+  slug: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  offers: Offer[];
+}
+
+const { title, pageTitle, description, slug, image, imageAlt, offers } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: title,
+  description,
+  brand: { '@type': 'Brand', name: 'Officially Fawnia' },
+  url: new URL(`/videos/${slug}`, Astro.site ?? 'https://www.officiallyfawnia.com').toString(),
+  offers: offers.map((offer) => ({
+    '@type': 'Offer',
+    name: offer.label,
+    price: offer.price.toFixed(2),
+    priceCurrency: 'USD',
+    availability: 'https://schema.org/InStock',
+    url: new URL(`/videos/${slug}`, Astro.site ?? 'https://www.officiallyfawnia.com').toString(),
+  })),
+};
+---
+
+<BaseLayout title={pageTitle} description={description} ogType="website" schema={schema}>
+  <article class="product container">
+    <p class="back"><a href="/videos">← Back to all videos</a></p>
+    <div class="grid">
+      <figure>
+        <Image
+          src={image}
+          alt={imageAlt}
+          widths={[480, 768, 1024]}
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          loading="eager"
+        />
+      </figure>
+      <div class="details">
+        <p class="eyebrow">Instructional video</p>
+        <h1>{title}</h1>
+        <ul class="offers">
+          {offers.map((offer) => (
+            <li>
+              <span class="price">${offer.price.toFixed(2)}</span>
+              <Button href={offer.href} variant="primary" external>
+                Buy {offer.label}
+              </Button>
+            </li>
+          ))}
+        </ul>
+        <div class="description prose">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .product {
+    padding-block: var(--space-section);
+  }
+  .back {
+    margin-bottom: var(--space-8);
+  }
+  .back a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+  .back a:hover {
+    color: var(--color-accent);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    align-items: start;
+  }
+  @media (min-width: 1024px) {
+    .grid {
+      grid-template-columns: 2fr 3fr;
+    }
+  }
+  figure {
+    margin: 0;
+  }
+  figure :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  h1 {
+    margin: 0 0 var(--space-6);
+  }
+  .offers {
+    list-style: none;
+    margin: 0 0 var(--space-8);
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .offers li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .price {
+    font-family: var(--font-display);
+    font-size: var(--fs-2xl);
+    min-width: 4.5em;
+  }
+  .description :global(p) {
+    max-width: 65ch;
+  }
+</style>
