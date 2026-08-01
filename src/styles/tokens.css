@@ -3,10 +3,10 @@
 
 :root {
   /* Brand */
-  --color-primary: #c3b287;
+  --color-primary: #f0489c;
   --color-primary-contrast: #0a0a0a;
   --color-secondary: #6e6e6e;
-  --color-accent: #c3b287;
+  --color-accent: #f0489c;
 
   /* Neutral */
   --color-bg: #050505;
@@ -18,7 +18,7 @@
 
   --color-accent-contrast: #ffffff;
 
-  --color-champagne-light: #f2cd8c;
+  --color-pink-light: #ff9fcb;
   --fs-mega: clamp(3rem, 2rem + 6vw, 5.5rem);
 
   /* Semantic */
