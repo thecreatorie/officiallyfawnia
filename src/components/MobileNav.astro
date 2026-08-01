@@ -65,6 +65,10 @@ const isCurrent = (href: string) =>
        so the hamburger toggle in the header stays tappable while open. */
     position: fixed;
     inset: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
     /* Bulletproof FULLY OPAQUE panel — literal hex (not a var), no blur. */
     background: #050505;
     background-clip: padding-box;
@@ -124,6 +128,9 @@ const isCurrent = (href: string) =>
 <script>
   const toggle = document.getElementById('mobile-nav-toggle');
   const drawer = document.getElementById('mobile-nav-drawer');
+  /* PORTAL: move the drawer to <body> so no ancestor filter/transform can
+     become its containing block and trap inset:0 inside the header. */
+  if (drawer && drawer.parentElement !== document.body) document.body.appendChild(drawer);
 
   if (toggle && drawer) {
     const setOpen = (open: boolean) => {
