@@ -141,7 +141,7 @@ const schema = [
   <!-- ABOUT TEASER -->
   <section class="container teaser">
     <div class="teaser-grid reveal">
-      <figure class="teaser-media">
+      <figure class="teaser-media teaser-media--photo">
         <Image
           src={aboutImage}
           alt="Portrait of Fawnia Mondey"
@@ -295,12 +295,31 @@ const schema = [
   .hero-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-12);
+    gap: var(--space-8);
     align-items: center;
   }
   @media (min-width: 1024px) {
     .hero-grid {
       grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-12);
+    }
+  }
+  /* Mobile / stacked: portrait first, cropped to a clean 3:4 frame. */
+  @media (max-width: 1023.98px) {
+    .hero-media {
+      order: -1;
+    }
+    .hero-media :global(img) {
+      aspect-ratio: 3 / 4;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: 50% 18%;
+    }
+  }
+  @media (max-width: 767.98px) {
+    .line-shape-wrap :global(.line-shape) {
+      display: none;
     }
   }
   h1 .outline {
@@ -395,6 +414,20 @@ const schema = [
     width: 100%;
     height: auto;
     border-radius: var(--radius-lg);
+  }
+  /* Stacked teasers: images lead with a set frame. */
+  @media (max-width: 1023.98px) {
+    .teaser-media--photo :global(img) {
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      object-position: 50% 25%;
+    }
+    .teaser-grid--flip .teaser-media :global(img) {
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: 50% 20%;
+      max-width: 420px;
+    }
   }
   .teaser-copy p:not(.eyebrow) {
     color: var(--color-text-muted);

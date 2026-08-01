@@ -113,6 +113,19 @@ const schema = {
     border-radius: var(--radius-md);
     box-shadow: 0 30px 70px rgb(0 0 0 / 0.55);
   }
+  /* Mobile: cover leads at its native DVD-box ratio (~7:10), no cropping of box art. */
+  @media (max-width: 1023.98px) {
+    figure {
+      padding: var(--space-5);
+    }
+    figure :global(img) {
+      aspect-ratio: 7 / 10;
+      object-fit: cover;
+      object-position: 50% 50%;
+      max-width: 380px;
+      margin-inline: auto;
+    }
+  }
   h1 {
     margin: 0 0 var(--space-6);
   }

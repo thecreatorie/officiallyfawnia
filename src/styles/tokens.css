@@ -108,3 +108,12 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Mobile display-size overrides — keep mega uppercase h1s inside narrow viewports
+   (longest unbreakable words: "CERTIFICATION", "ENTERTAINING", "INSTRUCTIONAL"). */
+@media (max-width: 640px) {
+  :root { --fs-mega: 2.5rem; }
+}
+@media (max-width: 480px) {
+  :root { --fs-mega: 2.25rem; }
+}

@@ -61,14 +61,17 @@ const isCurrent = (href: string) =>
   }
 
   .drawer {
-    /* Full-screen fixed panel; sits beneath the sticky header (z 50) so the
-       translucent header bar stays visible while the panel itself is opaque. */
+    /* Full-screen fixed panel below the sticky header (header z-index 70),
+       so the hamburger toggle in the header stays tappable while open. */
     position: fixed;
     inset: 0;
-    /* FULLY OPAQUE panel — never color-mix/backdrop-filter translucency. */
-    background: var(--color-bg);
+    /* Bulletproof FULLY OPAQUE panel — literal hex (not a var), no blur. */
+    background: #050505;
+    background-clip: padding-box;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     padding: calc(72px + var(--space-4)) var(--space-5) var(--space-8);
-    z-index: 40;
+    z-index: 60;
     overflow-y: auto;
   }
 
@@ -112,7 +115,7 @@ const isCurrent = (href: string) =>
   }
 
   .drawer a[aria-current='page'] {
-    color: var(--color-pink-light);
+    color: var(--color-champagne-light);
     border-left-color: var(--color-primary);
     background: var(--color-surface);
   }
