@@ -239,32 +239,24 @@ const schema = [
     </div>
   </section>
 
-  <!-- STUDIOS -->
+  <!-- THE STUDIO -->
   <section class="container teaser">
     <div class="teaser-head reveal">
-      <p class="eyebrow">Studios</p>
+      <p class="eyebrow">The Studio</p>
       <h2>Learn With Fawnia in Las Vegas</h2>
     </div>
-    <div class="studios" data-stagger>
-      <article class="studio">
+    <div class="studios">
+      <article class="studio studio--solo reveal">
         <h3>Pole Fitness Studio</h3>
         <p>
-          Learn from over 25 instructors specializing in pole dancing, lyra, aerial hammock, boot
-          camp, hip hop, hula hoop, yoga, stretching and more! Call us to set up your next birthday
-          or bachelorette party; yes we teach pole dancing parties 24/7. You can even rent a dance
-          pole and purchase instructional DVDs on Pole Dancing for Fitness! We also offer the Pole
-          Dance Instructor Certification (PDIC), and Lap Dance Instructor Certification (LDIC).
+          Fawnia&rsquo;s own Las Vegas studio &mdash; learn from over 25 instructors specializing in pole
+          dancing, lyra, aerial hammock, boot camp, hip hop, hula hoop, yoga, stretching and more!
+          Call us to set up your next birthday or bachelorette party; yes we teach pole dancing
+          parties 24/7. You can even rent a dance pole and purchase instructional DVDs on Pole
+          Dancing for Fitness! We also offer the Pole Dance Instructor Certification (PDIC), and
+          Lap Dance Instructor Certification (LDIC).
         </p>
-        <Button href="https://www.polefitnessstudio.com" variant="ghost" external>Visit</Button>
-      </article>
-      <article class="studio">
-        <h3>Pole Dancing Las Vegas</h3>
-        <p>
-          Book your private pole dancing party with us. Try our unlimited monthly membership with
-          300 classes in Pole Dancing, Striptease, Yoga, Zumba, Booty Camp, Burlesque, Ballet and
-          more!
-        </p>
-        <Button href="http://www.poledancinglasvegas.net" variant="ghost" external>Visit</Button>
+        <Button href="https://www.polefitnessstudio.com" variant="ghost" external>Visit Pole Fitness Studio</Button>
       </article>
     </div>
   </section>
@@ -462,6 +454,7 @@ const schema = [
   }
 
   /* STUDIOS */
+  .studio--solo { max-width: 56rem; margin-inline: auto; }
   .studios {
     display: grid;
     grid-template-columns: 1fr;
