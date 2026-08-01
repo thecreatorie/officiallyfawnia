@@ -11,7 +11,7 @@ import SectionHeader from '../components/SectionHeader.astro';
   intro="Fawnia in Print"
 >
   <section class="container">
-    <SectionHeader eyebrow="Print" title="Fawnia in Print" />
+    <SectionHeader class="reveal" eyebrow="Print" title="Fawnia in Print" />
     <div class="prose">
       <p>
         Private Dancer Magazine (COVER), Vegas magazine, Las Vegas Life (COVER), Strip Las Vegas,
@@ -59,7 +59,10 @@ import SectionHeader from '../components/SectionHeader.astro';
       </p>
     </div>
 
+    <hr class="gold-rule" />
+
     <SectionHeader
+      class="reveal"
       eyebrow="Television"
       title="Television"
       description="Below are a handful of programs I have been fortunate to be featured on. Perhaps you have seen me on TV? I am looking forward to meeting more people and creating more laughs and memories!"
@@ -148,7 +151,19 @@ import SectionHeader from '../components/SectionHeader.astro';
   .prose {
     max-width: 72ch;
   }
+  .prose :global(p),
+  .prose :global(li) {
+    color: var(--color-text-muted);
+    line-height: var(--lh-loose);
+  }
   .prose h3 {
     margin-top: var(--space-10);
+  }
+  .gold-rule {
+    border: 0;
+    height: 1px;
+    background: var(--color-primary);
+    opacity: 0.35;
+    margin-block: var(--space-16);
   }
 </style>

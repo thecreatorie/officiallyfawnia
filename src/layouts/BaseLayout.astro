@@ -1,12 +1,12 @@
 ---
-import '@fontsource-variable/playfair-display';
-import '@fontsource-variable/source-sans-3';
+import '@fontsource-variable/urbanist';
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/typography.css';
 import '../styles/flavor.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Motion from '../components/Motion.astro';
 import SchemaJsonLd from '../components/SchemaJsonLd.astro';
 
 export interface Props {
@@ -77,5 +77,6 @@ const siteName = 'Officially Fawnia';
       <slot />
     </main>
     <Footer />
+    <Motion />
   </body>
 </html>

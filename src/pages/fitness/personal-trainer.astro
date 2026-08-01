@@ -42,7 +42,7 @@ const schema = {
       </p>
     </div>
 
-    <div class="before-after">
+    <div class="before-after" data-stagger>
       <figure>
         <Image
           src={beforeImage}
@@ -65,8 +65,8 @@ const schema = {
       </figure>
     </div>
 
-    <SectionHeader eyebrow="Details" title="Personal Training with Fawnia" />
-    <dl class="facts">
+    <SectionHeader class="reveal" eyebrow="Details" title="Personal Training with Fawnia" />
+    <dl class="facts" data-stagger>
       <div><dt>Location</dt><dd>Las Vegas, NV. USA</dd></div>
       <div><dt>Rates</dt><dd>$130/hour or online training: $950/month.*</dd></div>
       <div><dt>Specialty</dt><dd>General Fitness, Competition, Nutrition &amp; Supplementation</dd></div>
@@ -132,6 +132,10 @@ const schema = {
 <style>
   .prose {
     max-width: 72ch;
+  }
+  .prose :global(p) {
+    color: var(--color-text-muted);
+    line-height: var(--lh-loose);
   }
   .prose h3 {
     margin-top: var(--space-10);

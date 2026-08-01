@@ -1,16 +1,17 @@
 ---
 import { Image } from 'astro:assets';
-import PageLayout from '../../layouts/PageLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Marquee from '../../components/Marquee.astro';
 import galleries from '../../data/galleries.json';
 
 const sections = [
-  { slug: 'bikini', label: 'Bikini' },
-  { slug: 'competition', label: 'Competition' },
-  { slug: 'fitness', label: 'Fitness' },
-  { slug: 'pole-dance', label: 'Pole & Dance' },
-  { slug: 'fashion', label: 'Fashion' },
-  { slug: 'unique', label: 'Unique Variety' },
-  { slug: 'published', label: 'Published' },
+  { slug: 'bikini', label: 'Bikini', num: '01' },
+  { slug: 'competition', label: 'Competition', num: '02' },
+  { slug: 'fitness', label: 'Fitness', num: '03' },
+  { slug: 'pole-dance', label: 'Pole & Dance', num: '04' },
+  { slug: 'fashion', label: 'Fashion', num: '05' },
+  { slug: 'unique', label: 'Unique Variety', num: '06' },
+  { slug: 'published', label: 'Published', num: '07' },
 ] as const;
 
 const modules = import.meta.glob<{ default: ImageMetadata }>(
@@ -18,12 +19,13 @@ const modules = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true }
 );
 
-const cards = sections.map(({ slug, label }) => {
+const cards = sections.map(({ slug, label, num }) => {
   const first = galleries[slug][0];
   const key = Object.keys(modules).find((k) => k.endsWith(`/gallery/${slug}/${first.file}`));
   return {
     slug,
     label,
+    num,
     count: galleries[slug].length,
     image: key ? modules[key].default : undefined,
     alt: first.alt,
@@ -31,44 +33,73 @@ const cards = sections.map(({ slug, label }) => {
 });
 ---
 
-<PageLayout
+<BaseLayout
   title="Gallery — Officially Fawnia"
   description="Photo galleries of Fawnia Mondey — bikini, competition, fitness, pole and dance, fashion, unique variety and published magazine features."
-  eyebrow="Gallery"
-  heading="Gallery"
-  intro="Enjoy my photo galleries — from competition stages and fitness shoots to pole, fashion and published magazine features."
 >
-  <section class="container">
-    <ul class="gallery-cards">
+  <section class="container gallery-hub">
+    <header class="hub-head" data-stagger>
+      <p class="eyebrow">Gallery</p>
+      <h1>Gallery</h1>
+      <p class="intro">
+        Enjoy my photo galleries — from competition stages and fitness shoots to pole, fashion and
+        published magazine features.
+      </p>
+    </header>
+
+    <ul class="gallery-cards" data-stagger>
       {cards.map((card, i) => (
         <li>
           <a href={`/gallery/${card.slug}`}>
-            {card.image && (
-              <Image
-                src={card.image}
-                alt={card.alt}
-                widths={[320, 480, 768]}
-                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                loading={i < 2 ? 'eager' : 'lazy'}
-              />
-            )}
-            <span class="label">{card.label}</span>
-            <span class="count">{card.count} photos</span>
+            <span class="frame">
+              {card.image && (
+                <Image
+                  src={card.image}
+                  alt={card.alt}
+                  widths={[320, 480, 768]}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                />
+              )}
+            </span>
+            <span class="meta">
+              <span class="num" aria-hidden="true">{card.num}</span>
+              <span class="label">{card.label}</span>
+              <span class="count">{card.count} photos</span>
+            </span>
           </a>
         </li>
       ))}
     </ul>
   </section>
-</PageLayout>
+
+  <Marquee
+    compact
+    items={['Bikini', 'Competition', 'Fitness', 'Pole & Dance', 'Fashion', 'Unique', 'Published']}
+    fillIndexes={[3]}
+  />
+</BaseLayout>
 
 <style>
+  .gallery-hub {
+    padding-block: var(--space-section);
+  }
+  .hub-head {
+    max-width: 70ch;
+    margin-bottom: var(--space-12);
+  }
+  .hub-head .intro {
+    color: var(--color-text-muted);
+    font-size: var(--fs-lg);
+    max-width: 55ch;
+  }
   .gallery-cards {
     list-style: none;
-    margin: var(--space-10) 0 0;
+    margin: 0 0 var(--space-16);
     padding: 0;
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-6);
+    gap: var(--space-8) var(--space-6);
   }
   @media (min-width: 640px) {
     .gallery-cards {
@@ -85,25 +116,47 @@ const cards = sections.map(({ slug, label }) => {
     text-decoration: none;
     color: var(--color-text);
   }
+  .frame {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+  }
   .gallery-cards :global(img) {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    border-radius: var(--radius-lg);
-    transition: transform var(--duration-normal) var(--ease-out);
+    transition: transform var(--duration-slow) var(--ease-out);
   }
   .gallery-cards a:hover :global(img) {
-    transform: scale(1.02);
+    transform: scale(1.04);
+  }
+  .meta {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+  .num {
+    color: var(--color-primary);
+    font-weight: 200;
+    font-size: var(--fs-2xl);
   }
   .label {
-    display: block;
-    margin-top: var(--space-3);
     font-family: var(--font-display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     font-size: var(--fs-xl);
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .gallery-cards a:hover .label {
+    color: var(--color-champagne-light);
   }
   .count {
-    color: var(--color-text-muted);
+    margin-left: auto;
+    color: var(--color-text-subtle);
     font-size: var(--fs-sm);
   }
 </style>

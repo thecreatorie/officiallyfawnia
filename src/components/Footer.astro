@@ -68,9 +68,15 @@ const year = new Date().getFullYear();
   .logo {
     font-family: var(--font-display);
     font-size: var(--fs-xl);
-    font-weight: var(--fw-semibold);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     color: var(--color-text);
     text-decoration: none;
+  }
+
+  .logo:hover {
+    color: var(--color-champagne-light);
   }
 
   .tagline {
@@ -82,10 +88,10 @@ const year = new Date().getFullYear();
   h2 {
     font-family: var(--font-body);
     font-size: var(--fs-sm);
-    font-weight: var(--fw-semibold);
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--color-text-muted);
+    letter-spacing: 0.24em;
+    color: var(--color-primary);
     margin: 0 0 var(--space-4) 0;
   }
 
@@ -101,9 +107,11 @@ const year = new Date().getFullYear();
   nav a {
     color: var(--color-text);
     text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
   }
 
   nav a:hover {
+    color: var(--color-champagne-light);
     text-decoration: underline;
   }
 

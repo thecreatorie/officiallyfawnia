@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import PageLayout from '../layouts/PageLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import Marquee from '../components/Marquee.astro';
 import heroImage from '../assets/pages/about-hero.jpg';
 import fawniaImage from '../assets/pages/about-fawnia.jpg';
 
@@ -37,7 +38,7 @@ const schema = {
   </nav>
 
   <section class="container" id="biography">
-    <SectionHeader eyebrow="Biography" title="Family" />
+    <SectionHeader class="reveal" eyebrow="Biography" title="Family" />
     <div class="split">
       <div class="prose">
         <p>
@@ -80,7 +81,7 @@ const schema = {
           home. I love travelling, meeting new friends and learning about different cultures.
         </p>
       </div>
-      <figure>
+      <figure class="reveal">
         <Image
           src={heroImage}
           alt="Portrait of Fawnia Mondey"
@@ -91,7 +92,7 @@ const schema = {
       </figure>
     </div>
 
-    <SectionHeader title="My Athletic Background" />
+    <SectionHeader class="reveal" title="My Athletic Background" />
     <div class="prose">
       <p>
         In elementary school I ran cross country and the 800m. I also played numerous team sports,
@@ -235,7 +236,7 @@ const schema = {
   </section>
 
   <section class="container" id="competitions">
-    <SectionHeader eyebrow="Competitions" title="Competitions" />
+    <SectionHeader class="reveal" eyebrow="Competitions" title="Competitions" />
     <div class="split">
       <div class="prose">
         <p>
@@ -256,7 +257,7 @@ const schema = {
           Vegas.
         </p>
       </div>
-      <figure>
+      <figure class="reveal">
         <Image
           src={fawniaImage}
           alt="Fawnia smiling in a portrait photo"
@@ -301,7 +302,7 @@ const schema = {
   </section>
 
   <section class="container" id="magazines">
-    <SectionHeader eyebrow="Magazines" title="I have appeared in the following magazines and calendars" />
+    <SectionHeader class="reveal" eyebrow="Magazines" title="I have appeared in the following magazines and calendars" />
     <div class="prose">
       <p>
         Natural Bodybuilding &amp; Fitness, Oxygen Magazine, Muscle Marketing USA, Pumped Action Wear
@@ -322,8 +323,14 @@ const schema = {
     </div>
   </section>
 
+  <Marquee
+    compact
+    items={['Pioneer', 'Judge', 'Studio Owner', 'Author', '100% Vegan']}
+    fillIndexes={[0]}
+  />
+
   <section class="container" id="pole-highlights">
-    <SectionHeader eyebrow="Pole & Highlights" title="The woman behind the pole" />
+    <SectionHeader class="reveal" eyebrow="Pole & Highlights" title="The woman behind the pole" />
     <div class="prose">
       <p>
         Canadian born Fawnia Mondey is the pioneer of pole dancing instruction as she produced the
@@ -490,7 +497,7 @@ const schema = {
   </section>
 
   <section class="container" id="community">
-    <SectionHeader eyebrow="In the Community" title="Giving back" />
+    <SectionHeader class="reveal" eyebrow="In the Community" title="Giving back" />
     <div class="prose">
       <p>
         I have always been a believer in giving back to my community. Here are a few of the
@@ -547,7 +554,8 @@ const schema = {
   }
   .prose p,
   .prose li {
-    color: var(--color-text);
+    color: var(--color-text-muted);
+    line-height: var(--lh-loose);
   }
   .prose h3 {
     margin-top: var(--space-10);

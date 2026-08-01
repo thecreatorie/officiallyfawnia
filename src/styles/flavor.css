@@ -1,9 +1,54 @@
-/* Editorial flavor — Officially Fawnia */
-h1, h2, h3 { letter-spacing: -0.01em; }
-.eyebrow { letter-spacing: 0.14em; text-transform: uppercase; font-size: var(--fs-sm); color: var(--color-accent); font-weight: var(--fw-semibold); }
-.section-rule { border: 0; border-top: 1px solid var(--color-text); margin-block: var(--space-8); }
-a:not(.btn) { text-decoration-color: var(--color-accent); text-underline-offset: 3px; }
-.btn--primary { background: var(--color-text); color: var(--color-bg); border-radius: var(--radius-sm); }
-.btn--primary:hover { background: var(--color-accent); color: #fff; }
-blockquote { border-left: 3px solid var(--color-accent); font-family: var(--font-display); font-size: var(--fs-xl); }
-.card { border: 1px solid var(--color-border); box-shadow: none; }
+/* Awwa-inspired v2 — Officially Fawnia: dark modern editorial, champagne, kinetic */
+h1, h2, h3 { text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.05; font-weight: 800; }
+h1 { font-size: var(--fs-mega); }
+.eyebrow { color: var(--color-primary); letter-spacing: 0.28em; text-transform: uppercase; font-size: var(--fs-sm); font-weight: 700; }
+a:not(.btn) { color: var(--color-champagne-light); text-decoration-color: var(--color-primary); text-underline-offset: 4px; }
+::selection { background: #c3b287; color: #0a0a0a; }
+
+.btn { text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
+.btn--primary { background: var(--color-primary); color: #0a0a0a; border-radius: var(--radius-full); padding-inline: var(--space-8); }
+.btn--primary:hover { background: var(--color-champagne-light); }
+.btn--secondary, .btn--ghost { border: 2px solid var(--color-primary); color: var(--color-champagne-light); background: transparent; border-radius: var(--radius-full); }
+.btn--secondary:hover, .btn--ghost:hover { background: rgb(195 178 135 / 0.12); }
+.btn-circle { display: inline-grid; place-items: center; width: 56px; height: 56px; border: 2px solid var(--color-champagne-light); border-radius: 50%; color: var(--color-primary); transition: transform var(--duration-fast) var(--ease-out), background var(--duration-fast); }
+.btn-circle:hover { transform: scale(1.08); background: rgb(195 178 135 / 0.12); }
+
+.card { background: var(--color-surface); border: 1px solid var(--color-border); box-shadow: none; }
+.card:hover { border-color: var(--color-primary); transform: translateY(-3px); }
+img { border-radius: var(--radius-md); }
+
+/* Giant outlined marquee — signature kinetic texture */
+.mega-marquee { overflow: hidden; white-space: nowrap; padding-block: var(--space-6); border-block: 1px solid var(--color-border); }
+.mega-marquee .track { display: inline-block; animation: mega-scroll 32s linear infinite; }
+.mega-marquee span { font-size: clamp(5rem, 12vw, 11rem); font-weight: 900; text-transform: uppercase; line-height: 1;
+  color: transparent; -webkit-text-stroke: 1px #6e6357; padding-right: 3rem; }
+.mega-marquee span.fill { color: var(--color-primary); -webkit-text-stroke: 0; }
+@keyframes mega-scroll { to { transform: translateX(-50%); } }
+
+/* Ghost stat numbers */
+.ghost-num { font-size: clamp(4rem, 10vw, 9rem); font-weight: 200; color: transparent; -webkit-text-stroke: 1px #3a3a3a; line-height: 1; }
+
+/* line-shape accent behind hero imagery */
+.line-shape-wrap { position: relative; }
+.line-shape-wrap .line-shape { position: absolute; top: 6%; left: -8%; z-index: -1; color: var(--color-primary); opacity: .55; }
+
+/* Custom cursor (fine pointers only; JS adds .cursor-on to html) */
+@media (pointer: fine) {
+  html.cursor-on, html.cursor-on a, html.cursor-on button { cursor: none; }
+  .cur-dot, .cur-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; border-radius: 50%; will-change: transform; }
+  .cur-dot { width: 8px; height: 8px; background: var(--color-champagne-light); }
+  .cur-ring { width: 38px; height: 38px; border: 1px solid var(--color-primary); transition: width .25s, height .25s, opacity .25s; margin: -15px; }
+  html.cursor-hover .cur-ring { width: 64px; height: 64px; opacity: .7; }
+}
+
+/* Reveals (JS adds .in-view; content visible without JS) */
+html.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
+html.js .reveal.in-view { opacity: 1; transform: none; }
+html.js [data-stagger] > * { opacity: 0; transform: translateY(22px); transition: opacity .55s var(--ease-out), transform .55s var(--ease-out); }
+html.js [data-stagger].in-view > * { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal, html.js [data-stagger] > * { opacity: 1 !important; transform: none !important; }
+  .mega-marquee .track { animation: none !important; }
+  .cur-dot, .cur-ring { display: none !important; }
+  html.cursor-on, html.cursor-on a, html.cursor-on button { cursor: auto; }
+}

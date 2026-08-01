@@ -1,0 +1,99 @@
+---
+/*
+  Motion system (Awwa v2):
+  - html.js gate — reveal styles only apply when JS runs; content is fully
+    visible and usable without JS.
+  - IntersectionObserver scroll reveals for .reveal and [data-stagger]
+    (child transition delays of 80ms), revealed once, threshold 0.15.
+  - Custom cursor (dot + lerped ring) on fine pointers only; skipped on
+    prefers-reduced-motion and coarse pointers.
+  - Sticky header shadow class after 40px of scroll.
+*/
+---
+
+<script>
+  const root = document.documentElement;
+  root.classList.add('js');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- Scroll reveals ---
+  const targets = document.querySelectorAll('.reveal, [data-stagger]');
+
+  document.querySelectorAll('[data-stagger]').forEach((parent) => {
+    Array.from(parent.children).forEach((child, i) => {
+      (child as HTMLElement).style.transitionDelay = reduced ? '0ms' : `${i * 80}ms`;
+    });
+  });
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('in-view'));
+  } else {
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.15 }
+    );
+    targets.forEach((el) => io.observe(el));
+  }
+
+  // --- Custom cursor (fine pointers only) ---
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (!reduced && finePointer) {
+    const dot = document.createElement('div');
+    dot.className = 'cur-dot';
+    const ring = document.createElement('div');
+    ring.className = 'cur-ring';
+    dot.setAttribute('aria-hidden', 'true');
+    ring.setAttribute('aria-hidden', 'true');
+    document.body.append(dot, ring);
+    root.classList.add('cursor-on');
+
+    let x = -100;
+    let y = -100;
+    let rx = -100;
+    let ry = -100;
+    let raf = 0;
+
+    const loop = () => {
+      rx += (x - rx) * 0.16;
+      ry += (y - ry) * 0.16;
+      ring.style.transform = `translate(${rx}px, ${ry}px)`;
+      raf = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        x = e.clientX;
+        y = e.clientY;
+        dot.style.transform = `translate(${x - 4}px, ${y - 4}px)`;
+        if (!raf) {
+          rx = x;
+          ry = y;
+          loop();
+        }
+      },
+      { passive: true }
+    );
+
+    const hoverables = 'a, button, [role="button"]';
+    document.addEventListener('mouseover', (e) => {
+      const t = e.target as Element | null;
+      root.classList.toggle('cursor-hover', !!t?.closest?.(hoverables));
+    });
+  }
+
+  // --- Sticky header shadow after 40px ---
+  const header = document.querySelector('.site-header');
+  if (header) {
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>

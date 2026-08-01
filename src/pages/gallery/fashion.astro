@@ -1,21 +1,33 @@
 ---
-import PageLayout from '../../layouts/PageLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 import GalleryGrid from '../../components/GalleryGrid.astro';
 ---
 
-<PageLayout
-  title="Fashion Gallery — Officially Fawnia"
-  description="Fashion photoshoots of Fawnia Mondey — fitness model and cover girl."
-  eyebrow="Gallery"
-  heading="Fashion"
->
-  <section class="container">
-    <GalleryGrid section="fashion" />
+<BaseLayout title="Fashion Gallery — Officially Fawnia" description="Fashion photoshoots of Fawnia Mondey — fitness model and cover girl.">
+  <section class="container gallery-page">
+    <header class="gallery-head" data-stagger>
+      <p class="eyebrow">Gallery</p>
+      <h1><span class="ghost-num" aria-hidden="true">05</span> Fashion</h1>
+    </header>
+    <GalleryGrid section="fashion" label="Fashion" />
     <p class="back"><a href="/gallery">← All galleries</a></p>
   </section>
-</PageLayout>
+</BaseLayout>
 
 <style>
+  .gallery-page {
+    padding-block: var(--space-section);
+  }
+  .gallery-head h1 {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .gallery-head .ghost-num {
+    font-size: clamp(3rem, 7vw, 6rem);
+  }
   .back {
     margin-top: var(--space-10);
   }

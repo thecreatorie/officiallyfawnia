@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import PageLayout from '../../layouts/PageLayout.astro';
+import Marquee from '../../components/Marquee.astro';
 
 import poleWork from '../../assets/videos/pole-work.jpg';
 import danceMoves from '../../assets/videos/dance-moves-floor-work.jpg';
@@ -94,7 +95,7 @@ const schema = {
   schema={schema}
 >
   <section class="container">
-    <ul class="products">
+    <ul class="products" data-stagger>
       {products.map((product, i) => (
         <li>
           <a href={`/videos/${product.slug}`} class="cover">
@@ -113,6 +114,12 @@ const schema = {
       ))}
     </ul>
   </section>
+
+  <Marquee
+    compact
+    items={['Watch Online', 'DVD', 'Pole Work', 'Since 1998', 'First of Their Kind']}
+    fillIndexes={[4]}
+  />
 </PageLayout>
 
 <style>
@@ -139,6 +146,11 @@ const schema = {
     border-radius: var(--radius-lg);
     overflow: hidden;
     background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    transition: border-color var(--duration-fast) var(--ease-out);
+  }
+  .cover:hover {
+    border-color: var(--color-primary);
   }
   .cover :global(img) {
     display: block;
@@ -158,12 +170,15 @@ const schema = {
     text-decoration: none;
   }
   h2 a:hover {
-    color: var(--color-accent);
+    color: var(--color-champagne-light);
   }
   .price {
     margin: var(--space-1) 0 0;
-    color: var(--color-accent);
-    font-weight: var(--fw-semibold);
+    color: var(--color-champagne-light);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--fs-sm);
   }
   .blurb {
     margin: var(--space-2) 0 0;

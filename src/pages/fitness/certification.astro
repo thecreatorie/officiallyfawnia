@@ -38,7 +38,7 @@ const schema = {
       </p>
     </div>
 
-    <figure class="photo">
+    <figure class="photo reveal">
       <Image
         src={groupImage}
         alt="Group of newly certified pole dance instructors with Fawnia"
@@ -48,7 +48,7 @@ const schema = {
       />
     </figure>
 
-    <SectionHeader eyebrow="Dates" title="2024 Pole Dance Instructors In-Person Certification dates" />
+    <SectionHeader class="reveal" eyebrow="Dates" title="2024 Pole Dance Instructors In-Person Certification dates" />
     <div class="prose">
       <ul>
         <li>Pole Level 1 — Sunday October 20th, 3PM - 8PM</li>
@@ -64,7 +64,7 @@ const schema = {
       </p>
     </div>
 
-    <SectionHeader eyebrow="Programs" title="Basic Certification" description="Learn Pole Dancing, Levels 1, 2, 3 and 4" />
+    <SectionHeader class="reveal" eyebrow="Programs" title="Basic Certification" description="Learn Pole Dancing, Levels 1, 2, 3 and 4" />
     <div class="prose">
       <ul>
         <li>Four levels of Choreography - Complete Routines</li>
@@ -141,7 +141,7 @@ const schema = {
       </p>
     </div>
 
-    <SectionHeader eyebrow="Why Fawnia" title="Why get certified by Fawnia?" />
+    <SectionHeader class="reveal" eyebrow="Why Fawnia" title="Why get certified by Fawnia?" />
     <div class="prose">
       <ul>
         <li>
@@ -196,6 +196,11 @@ const schema = {
 <style>
   .prose {
     max-width: 72ch;
+  }
+  .prose :global(p),
+  .prose :global(li) {
+    color: var(--color-text-muted);
+    line-height: var(--lh-loose);
   }
   .prose h3 {
     margin-top: var(--space-10);

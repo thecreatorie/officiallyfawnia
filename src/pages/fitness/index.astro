@@ -17,8 +17,8 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   intro="Fitness is a lifestyle for me. Explore personal training with Fawnia, the Pole Dance Instructors Certification, my fitness photo gallery and my articles on training and nutrition."
 >
   <section class="container">
-    <SectionHeader eyebrow="Work with Fawnia" title="Training & Certification" />
-    <div class="grid">
+    <SectionHeader class="reveal" eyebrow="Work with Fawnia" title="Training & Certification" />
+    <div class="grid" data-stagger>
       <Card
         eyebrow="One on one"
         title="Personal Trainer"
@@ -42,11 +42,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
   <section class="container">
     <SectionHeader
+      class="reveal"
       eyebrow="Articles"
       title="Fitness articles by Fawnia"
       description="Training, nutrition and lifestyle articles from the News & Articles blog."
     />
-    <ul class="post-list">
+    <ul class="post-list" data-stagger>
       {posts.map((post) => (
         <li>
           <a href={`/blog/${post.slug}`}>{post.data.title}</a>
@@ -96,7 +97,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
     text-decoration: none;
   }
   .post-list a:hover {
-    color: var(--color-accent);
+    color: var(--color-champagne-light);
   }
   .post-list time {
     color: var(--color-text-muted);

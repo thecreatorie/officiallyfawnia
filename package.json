@@ -20,8 +20,7 @@
     "astro": "^4.16.0",
     "astro-compress": "^2.3.0",
     "sharp": "^0.33.5",
-    "@fontsource-variable/playfair-display": "latest",
-    "@fontsource-variable/source-sans-3": "latest"
+    "@fontsource-variable/urbanist": "latest"
   },
   "devDependencies": {
     "@axe-core/cli": "^4.10.0",

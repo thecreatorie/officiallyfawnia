@@ -4,9 +4,11 @@ import galleries from '../data/galleries.json';
 
 export interface Props {
   section: keyof typeof galleries;
+  label?: string;
 }
 
-const { section } = Astro.props;
+const { section, label } = Astro.props;
+const caption = label ?? String(section);
 
 const modules = import.meta.glob<{ default: ImageMetadata }>(
   '../assets/gallery/**/*.{jpg,jpeg,png,JPG,JPEG}',
@@ -19,16 +21,21 @@ const items = (galleries[section] ?? []).map((item) => {
 }).filter((x): x is { image: ImageMetadata; alt: string } => x !== null);
 ---
 
-<ul class="gallery-grid">
+<ul class="gallery-grid reveal">
   {items.map(({ image, alt }, i) => (
     <li>
-      <Image
-        src={image}
-        alt={alt}
-        widths={[320, 480, 768]}
-        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-        loading={i === 0 ? 'eager' : 'lazy'}
-      />
+      <figure>
+        <Image
+          src={image}
+          alt={alt}
+          widths={[320, 480, 768]}
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+        <figcaption aria-hidden="true">
+          {caption} <span class="num">/ {String(i + 1).padStart(2, '0')}</span>
+        </figcaption>
+      </figure>
     </li>
   ))}
 </ul>
@@ -55,10 +62,46 @@ const items = (galleries[section] ?? []).map((item) => {
     break-inside: avoid;
     margin-bottom: var(--space-4);
   }
+  .gallery-grid figure {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+  }
   .gallery-grid :global(img) {
     display: block;
     width: 100%;
     height: auto;
-    border-radius: var(--radius-md);
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+  .gallery-grid figure:hover :global(img) {
+    transform: scale(1.04);
+  }
+  .gallery-grid figcaption {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: var(--space-8) var(--space-4) var(--space-3);
+    background: linear-gradient(transparent, rgb(0 0 0 / 0.8));
+    color: var(--color-champagne-light);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-out);
+  }
+  .gallery-grid figure:hover figcaption,
+  .gallery-grid figure:focus-within figcaption {
+    opacity: 1;
+  }
+  .gallery-grid .num {
+    color: var(--color-text-subtle);
+  }
+  @media (hover: none) {
+    .gallery-grid figcaption {
+      display: none;
+    }
   }
 </style>

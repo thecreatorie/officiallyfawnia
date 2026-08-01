@@ -1,0 +1,35 @@
+---
+/*
+  Awwa-style giant outlined marquee. Decorative (aria-hidden) — the track is
+  rendered twice for a seamless -50% translateX loop.
+  Props: items (strings; each item gets a ✦ separator), fillEvery (which items
+  render solid champagne), compact (smaller type for inner pages).
+*/
+export interface Props {
+  items: string[];
+  fillIndexes?: number[];
+  compact?: boolean;
+}
+
+const { items, fillIndexes = [0], compact = false } = Astro.props;
+---
+
+<div class={`mega-marquee${compact ? ' mega-marquee--compact' : ''}`} aria-hidden="true">
+  <div class="track">
+    {[0, 1].map(() =>
+      items.map((item, i) => (
+        <span class={fillIndexes.includes(i) ? 'fill' : undefined}>{item}&nbsp;&nbsp;✦</span>
+      ))
+    )}
+  </div>
+</div>
+
+<style>
+  .mega-marquee--compact :global(span) {
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    padding-right: 1.5rem;
+  }
+  .mega-marquee--compact {
+    padding-block: var(--space-4);
+  }
+</style>

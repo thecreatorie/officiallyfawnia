@@ -7,7 +7,6 @@ const items = [
   { label: 'Blog', href: '/blog' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Videos', href: '/videos' },
-  { label: 'Contact', href: '/contact' },
 ];
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -23,6 +22,13 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
         </li>
       );
     })}
+    <li>
+      <a
+        href="/contact"
+        class="nav-cta"
+        aria-current={pathname.startsWith('/contact') ? 'page' : undefined}
+      >Contact</a>
+    </li>
   </ul>
 </nav>
 
@@ -31,32 +37,56 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
     display: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 900px) {
     .primary-nav {
       display: block;
     }
 
     .primary-nav ul {
       display: flex;
-      gap: var(--space-6);
+      align-items: center;
+      gap: var(--space-5);
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
-    .primary-nav a {
+    .primary-nav a:not(.nav-cta) {
       color: var(--color-text);
       text-decoration: none;
-      font-weight: var(--fw-medium);
-      font-size: var(--fs-base);
+      font-weight: 700;
+      font-size: var(--fs-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       padding: var(--space-2) 0;
       border-bottom: 2px solid transparent;
-      transition: border-color var(--duration-fast) var(--ease-out);
+      transition: color var(--duration-fast) var(--ease-out),
+                  border-color var(--duration-fast) var(--ease-out);
     }
 
-    .primary-nav a:hover,
-    .primary-nav a[aria-current='page'] {
-      border-bottom-color: var(--color-accent);
+    .primary-nav a:not(.nav-cta):hover,
+    .primary-nav a:not(.nav-cta)[aria-current='page'] {
+      color: var(--color-champagne-light);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .nav-cta {
+      display: inline-block;
+      background: var(--color-primary);
+      color: #0a0a0a;
+      font-weight: 700;
+      font-size: var(--fs-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      padding: var(--space-2) var(--space-6);
+      border-radius: var(--radius-full);
+      transition: background var(--duration-fast) var(--ease-out);
+    }
+
+    .nav-cta:hover,
+    .nav-cta[aria-current='page'] {
+      background: var(--color-champagne-light);
     }
   }
 </style>

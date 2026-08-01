@@ -26,7 +26,7 @@ const schema = {
   schema={schema}
 >
   <section class="container">
-    <nav class="tag-nav" aria-label="Browse by tag">
+    <nav class="tag-nav reveal" aria-label="Browse by tag">
       <ul>
         {tags.map((tag) => (
           <li><a href={`/blog/tag/${tag}`}>#{tag}</a></li>
@@ -34,7 +34,7 @@ const schema = {
       </ul>
     </nav>
 
-    <ul class="post-list">
+    <ul class="post-list" data-stagger>
       {posts.map((post) => (
         <li>
           <article>
@@ -70,16 +70,18 @@ const schema = {
   }
   .tag-nav a {
     display: inline-block;
-    padding: var(--space-1) var(--space-3);
+    padding: var(--space-1) var(--space-4);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-full);
-    font-size: var(--fs-sm);
-    color: var(--color-text);
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-champagne-light);
     text-decoration: none;
   }
   .tag-nav a:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    border-color: var(--color-primary);
   }
   .post-list {
     list-style: none;
@@ -104,19 +106,23 @@ const schema = {
   h2 {
     margin: 0;
     font-size: var(--fs-2xl);
+    font-weight: 800;
   }
   h2 a {
     color: var(--color-text);
     text-decoration: none;
   }
   h2 a:hover {
-    color: var(--color-accent);
+    color: var(--color-champagne-light);
   }
   time {
     display: block;
-    margin-top: var(--space-1);
-    color: var(--color-text-muted);
-    font-size: var(--fs-sm);
+    margin-top: var(--space-2);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    font-size: var(--fs-xs);
   }
   article p {
     margin: var(--space-3) 0 0;

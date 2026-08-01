@@ -5,8 +5,7 @@ import MobileNav from './MobileNav.astro';
 
 <header class="site-header">
   <div class="container">
-    <a href="/" class="logo" aria-label="Home">
-      <!-- Replace with brand logo SVG during design-theme phase. -->
+    <a href="/" class="logo" aria-label="Officially Fawnia — Home">
       <span class="logo-text">Officially Fawnia</span>
     </a>
     <Nav />
@@ -19,10 +18,17 @@ import MobileNav from './MobileNav.astro';
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in oklab, var(--color-bg) 90%, transparent);
-    backdrop-filter: saturate(180%) blur(10px);
-    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    background: color-mix(in oklab, var(--color-bg) 82%, transparent);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-bottom: 1px solid var(--color-border);
+    transition: box-shadow var(--duration-normal) var(--ease-out),
+                background var(--duration-normal) var(--ease-out);
+  }
+
+  .site-header.is-scrolled {
+    background: color-mix(in oklab, var(--color-bg) 94%, transparent);
+    box-shadow: 0 10px 30px rgb(0 0 0 / 0.55);
   }
 
   .site-header > .container {
@@ -30,7 +36,7 @@ import MobileNav from './MobileNav.astro';
     align-items: center;
     justify-content: space-between;
     gap: var(--space-6);
-    min-height: 64px;
+    min-height: 68px;
     padding-block: var(--space-3);
   }
 
@@ -39,6 +45,13 @@ import MobileNav from './MobileNav.astro';
     color: var(--color-text);
     font-family: var(--font-display);
     font-size: var(--fs-lg);
-    font-weight: var(--fw-semibold);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .logo:hover {
+    color: var(--color-champagne-light);
   }
 </style>
