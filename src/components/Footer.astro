@@ -6,7 +6,7 @@ const year = new Date().getFullYear();
   <div class="container">
     <div class="grid">
       <div>
-        <a href="/" class="logo">Officially Fawnia™</a>
+        <a href="/" class="logo">Officially Fawnia</a>
         <p class="tagline">
           Fawnia... the pole dance instructor, fitness model and competitor, writer, actress and
           100% Vegan.
@@ -32,7 +32,7 @@ const year = new Date().getFullYear();
       <nav aria-label="Fawnia on the web">
         <h2>Fawnia on the web</h2>
         <ul>
-          <li><a href="https://thecreatorie.github.io/thetasteshow/" rel="noopener">TASTE The Show</a></li>
+          <li><a href="https://tastetheshow.com/" rel="noopener">TASTE The Show</a></li>
           <li><a href="https://www.polefitnessstudio.com" rel="noopener">Pole Fitness Studio</a></li>
           <li><a href="https://www.polefitnessonline.com" rel="noopener">Pole Fitness Online</a></li>
           <li><a href="https://lasvegaspolerentals.com" rel="noopener">Las Vegas Pole Rentals</a></li>
@@ -46,7 +46,12 @@ const year = new Date().getFullYear();
         </ul>
       </nav>
     </div>
-    <p class="copyright">© {year} Officially Fawnia. All rights reserved.</p>
+    <div class="colophon">
+      <p class="copyright">© {year} Officially Fawnia. All rights reserved.</p>
+      <p class="credit">
+        Built by <a href="https://thecreatorie.com" rel="noopener">thecreatorie.com</a>
+      </p>
+    </div>
   </div>
 </footer>
 
@@ -120,11 +125,31 @@ const year = new Date().getFullYear();
     text-decoration: underline;
   }
 
-  .copyright {
+  .colophon {
     margin-top: var(--space-12);
     padding-top: var(--space-6);
     border-top: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-6);
+  }
+
+  .copyright,
+  .credit {
+    margin: 0;
     color: var(--color-text-muted);
     font-size: var(--fs-sm);
+  }
+
+  .credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .credit a:hover {
+    color: var(--color-pink-light);
   }
 </style>
