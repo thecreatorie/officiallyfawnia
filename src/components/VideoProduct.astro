@@ -27,14 +27,14 @@ const schema = {
   name: title,
   description,
   brand: { '@type': 'Brand', name: 'Officially Fawnia' },
-  url: new URL(`/videos/${slug}`, Astro.site ?? 'https://www.officiallyfawnia.com').toString(),
+  url: new URL(`/videos/${slug}`, Astro.site ?? 'https://officiallyfawnia.com').toString(),
   offers: offers.map((offer) => ({
     '@type': 'Offer',
     name: offer.label,
     price: offer.price.toFixed(2),
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
-    url: new URL(`/videos/${slug}`, Astro.site ?? 'https://www.officiallyfawnia.com').toString(),
+    url: new URL(`/videos/${slug}`, Astro.site ?? 'https://officiallyfawnia.com').toString(),
   })),
 };
 ---

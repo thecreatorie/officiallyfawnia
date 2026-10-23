@@ -1,17 +1,30 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import Marquee from '../components/Marquee.astro';
 import Embed from '../components/Embed.astro';
 import heroImage from '../assets/pages/home-hero.jpg';
+import heroImageMobile from '../assets/pages/home-hero-mobile.jpg';
 import aboutImage from '../assets/pages/about-hero.jpg';
 import videoCover from '../assets/videos/pole-work.jpg';
 import galleryPole from '../assets/gallery/pole-dance/01-20130713_7504weblrg.jpg';
 import galleryCompetition from '../assets/gallery/competition/01-c1b.jpg';
 import galleryFashion from '../assets/gallery/fashion/01-PictureGroove-Fawnia-5254-web.jpg';
 import galleryBikini from '../assets/gallery/bikini/01-IMG_2083.jpg';
+
+// Mobile/stacked layout shows the hero as a 3:4 crop, so serve a pre-cropped,
+// right-sized file there instead of the full-height portrait.
+const heroMobileWidths = [400, 560, 680, 800, 1000];
+const heroMobileSrcset = (
+  await Promise.all(
+    heroMobileWidths.map(async (w) => {
+      const img = await getImage({ src: heroImageMobile, width: w, format: 'webp' });
+      return `${img.src} ${w}w`;
+    })
+  )
+).join(', ');
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
@@ -30,7 +43,7 @@ const schema = [
     '@type': 'Person',
     name: 'Fawnia Mondey',
     alternateName: 'Fawnia Dietrich',
-    url: Astro.site?.href ?? 'https://www.officiallyfawnia.com',
+    url: Astro.site?.href ?? 'https://officiallyfawnia.com',
     description:
       'Pole dance pioneer, instructor and judge; fitness model, personal trainer, author and actress. Producer of the world’s first instructional pole dancing video and creator of the Pole Dance Instructors Certification (PDIC).',
     jobTitle: ['Pole Dance Instructor', 'Personal Trainer', 'Author', 'Actress'],
@@ -49,7 +62,7 @@ const schema = [
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Officially Fawnia',
-    url: Astro.site?.href ?? 'https://www.officiallyfawnia.com',
+    url: Astro.site?.href ?? 'https://officiallyfawnia.com',
   },
 ];
 ---
@@ -110,13 +123,22 @@ const schema = [
             opacity="0.35"
           />
         </svg>
-        <Image
-          src={heroImage}
-          alt="Fawnia posing in a studio photoshoot"
-          widths={[480, 768, 1280]}
-          sizes="(min-width: 1024px) 46vw, 100vw"
-          loading="eager"
-        />
+        <picture>
+          <source
+            media="(max-width: 1023.98px)"
+            type="image/webp"
+            srcset={heroMobileSrcset}
+            sizes="calc(100vw - 2rem)"
+          />
+          <Image
+            src={heroImage}
+            alt="Fawnia posing in a studio photoshoot"
+            widths={[480, 640, 768, 1280]}
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
     </div>
   </section>
