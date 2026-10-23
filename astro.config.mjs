@@ -5,7 +5,7 @@ import compress from 'astro-compress';
 // IMPORTANT: replace `site` with the production URL during design-theme phase.
 // The seo-ai-optimize phase will also populate the `redirects` map from url-map.json.
 export default defineConfig({
-  site: 'https://www.officiallyfawnia.com',
+  site: 'https://officiallyfawnia.com',
   trailingSlash: 'never',
   build: {
     format: 'directory',
